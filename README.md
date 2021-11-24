@@ -6,8 +6,8 @@
    Decor is an e-commerce for decoration and furniture.
     
    </p
-<p align="center">
+<h2 align="center">
 🚧 **Decor is under development** 🚧
-    </p
+    </p>
 
 
