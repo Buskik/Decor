@@ -38,6 +38,9 @@ function CartScreen() {
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
   };
+  const removeItemHandler = (item) => {
+    dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
+  };
 
   const classes = useStyles();
 
@@ -48,7 +51,8 @@ function CartScreen() {
       </Typography>
       {cartItems.length === 0 ? (
         <div>
-          Carrinho vazio. <Link href="/">Voltar às compras</Link>
+          Carrinho vazio.{''}
+          <Link href="/">Voltar às compras</Link>
         </div>
       ) : (
         <Grid container spacing={1}>
@@ -104,7 +108,11 @@ function CartScreen() {
                       </TableCell>
                       <TableCell align="right">R$ {item.price}</TableCell>
                       <TableCell align="right">
-                        <Button variant="contained" color="secondary">
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          onClick={() => removeItemHandler(item)}
+                        >
                           x
                         </Button>
                       </TableCell>
