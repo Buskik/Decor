@@ -8,6 +8,6 @@
    </p
 <h2 align="center">
 🚧 **Decor is under development** 🚧
-    </p>
+    </h2>
 
 
