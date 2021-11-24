@@ -4,9 +4,10 @@
 </p>
 <p align="center">
    Decor is an e-commerce for decoration and furniture.
-    🚧 **Decor is under development** 🚧
+    
    </p
-
-
+<p align="center">
+🚧 **Decor is under development** 🚧
+    </p
 
 
