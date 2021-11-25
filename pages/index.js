@@ -27,7 +27,7 @@ export default function Home(props) {
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
     if (data.countInStock < quantity) {
-      window.alert('Desculpe, produto indisponível em estoque');
+      window.alert('Desculpe, produto esgotado');
       return;
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });

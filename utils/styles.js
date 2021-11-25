@@ -75,5 +75,14 @@ const useStyles = makeStyles({
     fontWeight: '700',
     padding: 0,
   },
+  font: {
+    maxWidth: 800,
+    margin: '0 auto',
+  },
+  loginTitle: {
+    marginTop: '15px',
+    fontWeight: 'bold',
+    fontSize: '30px',
+  },
 });
 export default useStyles;

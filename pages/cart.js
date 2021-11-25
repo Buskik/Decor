@@ -23,8 +23,10 @@ import NextLink from 'next/link';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import axios from 'axios';
+import { useRouter } from 'next/dist/client/router';
 
 function CartScreen() {
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const {
     cart: { cartItems },
@@ -33,13 +35,16 @@ function CartScreen() {
   const updateCartHandler = async (item, quantity) => {
     const { data } = await axios.get(`/api/products/${item._id}`);
     if (data.countInStock < quantity) {
-      window.alert('Desculpe, produto indisponível no estoque');
+      window.alert('Desculpe, produto esgotado');
       return;
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
   };
   const removeItemHandler = (item) => {
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
+  };
+  const checkoutHandler = () => {
+    router.push('/shipping');
   };
 
   const classes = useStyles();
@@ -133,7 +138,12 @@ function CartScreen() {
                   </Typography>
                 </ListItem>
                 <ListItem>
-                  <Button variant="contained" color="primary" fullWidth>
+                  <Button
+                    onClick={checkoutHandler}
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                  >
                     Comprar
                   </Button>
                 </ListItem>
