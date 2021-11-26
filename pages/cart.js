@@ -51,12 +51,13 @@ function CartScreen() {
 
   return (
     <Layout title="Carrinho - Decor">
-      <Typography className={classes.productTitle2} component="h1">
+      <Typography className={classes.cartTitle} component="h1">
         Carrinho
       </Typography>
       {cartItems.length === 0 ? (
-        <div>
-          Carrinho vazio.{''}
+        <div className={classes.cartEmpty}>
+          Carrinho vazio.
+          <br></br>
           <Link href="/">Voltar às compras</Link>
         </div>
       ) : (

@@ -3,6 +3,12 @@ const data = {
   users: [
     {
       name: 'Hellci',
+      email: 'hellci@example.com',
+      password: bcrypt.hashSync('1234'),
+      isAdmin: true,
+    },
+    {
+      name: 'Hellci',
       email: 'hellcitracinic@gmail.com',
       password: bcrypt.hashSync('BeautifulTango'),
       isAdmin: true,

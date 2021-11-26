@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonBase,
   Card,
   CardActionArea,
   CardActions,
@@ -56,24 +57,25 @@ export default function Home(props) {
                       >
                         {product.name}
                       </Typography>
+                      <CardActions>
+                        <Typography className={classes.productPrice}>
+                          R$ {product.price}
+                        </Typography>
+
+                        <Button
+                          className={classes.ctaProductList}
+                          size="small"
+                          color="secondary"
+                          variation="button"
+                          onClick={() => addToCartHandler(product)}
+                        >
+                          {' '}
+                          Adicionar ao carrinho
+                        </Button>
+                      </CardActions>
                     </CardContent>
                   </CardActionArea>
                 </NextLink>
-                <CardActions>
-                  <Typography className={classes.productPrice}>
-                    R$ {product.price}
-                  </Typography>
-                  <Button
-                    className={classes.ctaProductList}
-                    size="small"
-                    color="secondary"
-                    variation="button"
-                    onClick={() => addToCartHandler(product)}
-                  >
-                    {' '}
-                    Adicionar ao carrinho
-                  </Button>
-                </CardActions>
               </Card>
             </Grid>
           ))}

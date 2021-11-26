@@ -45,6 +45,9 @@ const useStyles = makeStyles({
     marginBottom: -25,
     padding: '3px 8px 20px 8px',
   },
+  cardArea: {
+    marginBottom: -25,
+  },
   ctaProduct: {
     fontFamily: "'Nunito Sans', sansSerif",
     fontWeight: 'bold',
@@ -71,7 +74,7 @@ const useStyles = makeStyles({
     },
   },
   productPrice: {
-    fontSize: '20px',
+    fontSize: '17px',
     fontWeight: '700',
     padding: 0,
   },
@@ -83,6 +86,22 @@ const useStyles = makeStyles({
     marginTop: '15px',
     fontWeight: 'bold',
     fontSize: '30px',
+  },
+  cartEmpty: {
+    marginTop: '10px',
+    '& a': {
+      fontWeight: 'bold',
+
+      textDecoration: 'none',
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
+    },
+  },
+  cartTitle: {
+    fontWeight: 'bold',
+    fontSize: '30px',
+    marginTop: 20,
   },
 });
 export default useStyles;
