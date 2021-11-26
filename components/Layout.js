@@ -12,14 +12,20 @@ import {
   Toolbar,
   Typography,
   Badge,
+  Button,
+  Menu,
+  MenuItem,
 } from '@material-ui/core';
 import useStyles from '../utils/styles';
 import { Store } from '../utils/Store';
 import Cookies from 'js-cookie';
+import { useState } from 'react';
+import { useRouter } from 'next/dist/client/router';
 
 export default function Layout({ description, title, children }) {
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
-  const { darkMode, cart } = state;
+  const { darkMode, cart, userInfo } = state;
   const theme = createTheme({
     typography: {
       fontFamily: "'Nunito Sans', sansSerif,",
@@ -39,6 +45,20 @@ export default function Layout({ description, title, children }) {
     dispatch({ type: darkMode ? 'DARK_MODE_OFF' : 'DARK_MODE_ON' });
     const newDarkMode = !darkMode;
     Cookies.set('darkMode', newDarkMode ? 'ON' : 'OFF');
+  };
+  const [anchorEl, setAnchorEl] = useState(null);
+  const loginClickHandler = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+  const loginMenuCloseHandler = () => {
+    setAnchorEl(null);
+  };
+  const logoutClickHandler = () => {
+    setAnchorEl(null);
+    dispatch({ type: 'USER_LOGOUT' });
+    Cookies.remove('userInfo');
+    Cookies.remove('cartItems');
+    router.push('/');
   };
   return (
     <div>
@@ -80,9 +100,35 @@ export default function Layout({ description, title, children }) {
                 )}
                 <Image src="/cart.svg" width={50} height={50} alt="" />
               </Link>
-              <Link href="/login" className={classes.login}>
-                <Image src="/login.svg" width={24} height={50} alt="" />
-              </Link>
+              {userInfo ? (
+                <>
+                  <Button
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    onClick={loginClickHandler}
+                    className={classes.login}
+                  >
+                    <Image src="/login.svg" width={24} height={50} alt="" />
+                  </Button>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onclose={loginMenuCloseHandler}
+                  >
+                    <MenuItem onClick={loginMenuCloseHandler}>Perfil</MenuItem>
+                    <MenuItem onClick={loginMenuCloseHandler}>
+                      Minha conta
+                    </MenuItem>
+                    <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
+                  </Menu>
+                </>
+              ) : (
+                <Link href="/login">
+                  <Typography>Login</Typography>
+                </Link>
+              )}
             </div>
           </Toolbar>
         </AppBar>

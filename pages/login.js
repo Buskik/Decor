@@ -7,11 +7,23 @@ import {
   Link,
 } from '@material-ui/core';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Layout from '../components/Layout';
+import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
+import { useRouter } from 'next/dist/client/router';
+import Cookies from 'js-cookie';
 
 export default function Login() {
+  const router = useRouter();
+  const { redirect } = router.query; //login?redirect=/shipping
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
+  useEffect(() => {
+    if (userInfo) {
+      router.push('/');
+    }
+  }, [router, userInfo]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const classes = useStyles();
@@ -22,7 +34,9 @@ export default function Login() {
         email,
         password,
       });
-      alert('Login efetuado');
+      dispatch({ type: 'USER_LOGIN', payload: data });
+      Cookies.set('userInfo', data);
+      router.push(redirect || '/');
     } catch (err) {
       alert(err.response.data ? err.response.data.message : err.message);
     }
