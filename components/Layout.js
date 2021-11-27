@@ -100,6 +100,7 @@ export default function Layout({ description, title, children }) {
                 )}
                 <Image src="/cart.svg" width={50} height={50} alt="" />
               </Link>
+
               {userInfo ? (
                 <>
                   <Button
@@ -126,7 +127,7 @@ export default function Layout({ description, title, children }) {
                 </>
               ) : (
                 <Link href="/login">
-                  <Typography>Login</Typography>
+                  <Image src="/login.svg" width={24} height={50} alt="" />
                 </Link>
               )}
             </div>

@@ -2,7 +2,9 @@
   "name": "next-decor",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "devServer": "webpack --config webpack.server.config.js --mode=development --watch",
+    "devClient": "webpack --mode=development --watch",
+    "dev": "next",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,6 +13,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "axios": "^0.24.0",
+    "babel-preset-next": "^1.4.0",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "js-cookie": "^3.0.1",
@@ -21,11 +24,13 @@
     "next-google-fonts": "^2.2.0",
     "next-images": "^1.8.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "babel-plugin-styled-components": "^2.0.1",
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.4"
   }
-  
 }

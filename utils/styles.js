@@ -19,7 +19,11 @@ const useStyles = makeStyles({
     marginLeft: '8px',
     marginRight: '-15px',
   },
-  login: {},
+  login: {
+    padding: 0,
+    float: 'right',
+    minWidth: 0,
+  },
   grow: {
     flexGrow: 1,
   },
