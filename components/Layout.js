@@ -31,7 +31,7 @@ export default function Layout({ description, title, children }) {
       fontFamily: "'Nunito Sans', sansSerif,",
     },
     palette: {
-      type: darkMode ? 'dark' : 'light',
+      type: darkMode ? 'light' : 'dark',
       primary: {
         main: '#fff000',
       },
@@ -84,7 +84,7 @@ export default function Layout({ description, title, children }) {
             <div>
               <Switch
                 className={classes.switch}
-                checked={darkMode}
+                checked={!darkMode}
                 onChange={darkModeChangehandler}
               ></Switch>
 

@@ -23,7 +23,7 @@ export default function Login() {
     if (userInfo) {
       router.push('/');
     }
-  }, [router, userInfo]);
+  });
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const classes = useStyles();
@@ -85,8 +85,10 @@ export default function Login() {
             </Button>
           </ListItem>
           <ListItem>
-            Não tem uma conta? &nbsp;
-            <Link href="/registro">Registre-se</Link>
+            Não tem uma conta?&nbsp;
+            <Link href={`/registro?redirect=${redirect || '/'}`}>
+              Registre-se
+            </Link>
           </ListItem>
         </List>
       </form>

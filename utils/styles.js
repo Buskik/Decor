@@ -8,6 +8,7 @@ const useStyles = makeStyles({
     },
   },
   switch: {
+    marginRight: -11,
     margin: 0,
     float: 'left',
     marginTop: '8px',
@@ -23,6 +24,7 @@ const useStyles = makeStyles({
     padding: 0,
     float: 'right',
     minWidth: 0,
+    textTransform: 'initial',
   },
   grow: {
     flexGrow: 1,
@@ -87,6 +89,11 @@ const useStyles = makeStyles({
     margin: '0 auto',
   },
   loginTitle: {
+    marginTop: '15px',
+    fontWeight: 'bold',
+    fontSize: '30px',
+  },
+  registerTitle: {
     marginTop: '15px',
     fontWeight: 'bold',
     fontSize: '30px',

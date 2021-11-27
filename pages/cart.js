@@ -144,6 +144,7 @@ function CartScreen() {
                     variant="contained"
                     color="primary"
                     fullWidth
+                    className={classes.ctaProduct}
                   >
                     Comprar
                   </Button>
