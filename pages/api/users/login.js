@@ -20,7 +20,7 @@ handler.post(async (req, res) => {
       isAdmin: user.isAdmin,
     });
   } else {
-    res.status(401).send({ message: 'Usuário ou senha inválido' });
+    res.status(401).send({ message: 'Email ou senha inválido' });
   }
 });
 

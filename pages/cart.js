@@ -132,7 +132,7 @@ function CartScreen() {
             <Card>
               <List>
                 <ListItem>
-                  <Typography className={classes.productTitle2}>
+                  <Typography className={classes.cartTitle2}>
                     Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
                     items) : R$
                     {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}

@@ -47,13 +47,18 @@ const useStyles = makeStyles({
     fontWeight: 'bold',
     fontSize: '30px',
   },
+  cartTitle2: {
+    fontWeight: 'bold',
+    fontSize: '30px',
+  },
   card: {
     marginBottom: -25,
-    padding: '3px 8px 20px 8px',
+    padding: '3px 8px 35px 8px',
   },
   cardArea: {
     marginBottom: -25,
   },
+
   ctaProduct: {
     fontFamily: "'Nunito Sans', sansSerif",
     fontWeight: 'bold',
@@ -64,9 +69,13 @@ const useStyles = makeStyles({
       color: '#fff000',
     },
   },
+  cardActions: {
+    marginRight: 0,
+  },
   ctaProductList: {
     fontSize: '13px',
     borderRadius: 6,
+    width: '80%',
     fontFamily: "'Nunito Sans', sansSerif",
     fontWeight: '900',
     backgroundColor: '#fff000',
@@ -80,8 +89,10 @@ const useStyles = makeStyles({
     },
   },
   productPrice: {
-    fontSize: '17px',
+    color: '#5aff00',
+    fontSize: '15px',
     fontWeight: '700',
+    marginRight: 10,
     padding: 0,
   },
   font: {

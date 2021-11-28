@@ -44,7 +44,7 @@ export default function Home(props) {
             <Grid item md={3} key={product.name}>
               <Card>
                 <NextLink href={`/produtos/${product.slug}`} passHref>
-                  <CardActionArea>
+                  <CardActionArea classNmae={classes.cardActionArea}>
                     <CardMedia
                       component="img"
                       image={product.image}
@@ -54,12 +54,16 @@ export default function Home(props) {
                       <Typography
                         className={classes.productTitle2}
                         component="h1"
+                        align="center"
                       >
                         {product.name}
                       </Typography>
-                      <CardActions>
+                      <CardActions
+                        disableSpacing="true"
+                        className={classes.cardActions}
+                      >
                         <Typography className={classes.productPrice}>
-                          R$ {product.price}
+                          R${product.price}
                         </Typography>
 
                         <Button
