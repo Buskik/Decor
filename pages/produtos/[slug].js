@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import {
@@ -7,22 +7,69 @@ import {
   Grid,
   Link,
   List,
+  TextField,
+  CircularProgress,
   ListItem,
   Typography,
 } from '@material-ui/core';
+import Rating from '@material-ui/lab/Rating';
 import Layout from '../../components/Layout';
 import useStyles from '../../utils/styles';
 import Product from '../../models/Product';
 import db from '../../utils/db';
 import { Store } from '../../utils/Store';
+import { getError } from '../../utils/error';
 import axios from 'axios';
+import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/dist/client/router';
 
 export default function ProductScreen(props) {
   const router = useRouter();
+  const { userInfo } = state;
   const { state, dispatch } = useContext(Store);
   const { product } = props;
   const classes = useStyles();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const [reviews, setReviews] = useState([]);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await axios.post(
+        `/api/products/${product._id}/reviews`,
+        {
+          rating,
+          comment,
+        },
+        {
+          headers: { authorization: `Bearer ${userInfo.token}` },
+        }
+      );
+      setLoading(false);
+      enqueueSnackbar('Review submitted successfully', { variant: 'success' });
+      fetchReviews();
+    } catch (err) {
+      setLoading(false);
+      enqueueSnackbar(getError(err), { variant: 'error' });
+    }
+  };
+
+  const fetchReviews = async () => {
+    try {
+      const { data } = await axios.get(`/api/products/${product._id}/reviews`);
+      setReviews(data);
+    } catch (err) {
+      enqueueSnackbar(getError(err), { variant: 'error' });
+    }
+  };
+  useEffect(() => {
+    fetchReviews();
+  });
 
   if (!product) {
     return <div>Produto não encontrado</div>;
@@ -71,9 +118,10 @@ export default function ProductScreen(props) {
               <Typography>Categoria: {product.category}</Typography>
             </ListItem>
             <ListItem>
-              <Typography>
-                Rating: {product.rating} stars ({product.numReviews} reviews)
-              </Typography>
+              <Rating value={product.rating} readOnly></Rating>
+              <Link href="#reviews">
+                <Typography>({product.numReviews} reviews)</Typography>
+              </Link>
             </ListItem>
             <ListItem>
               <Typography>Descrição: {product.description}</Typography>
@@ -116,6 +164,79 @@ export default function ProductScreen(props) {
           </Card>
         </Grid>
       </Grid>
+      <List>
+        <ListItem>
+          <Typography name="reviews" id="reviews" variant="h2">
+            Customer Reviews
+          </Typography>
+        </ListItem>
+        {reviews.length === 0 && <ListItem>No review</ListItem>}
+        {reviews.map((review) => (
+          <ListItem key={review._id}>
+            <Grid container>
+              <Grid item className={classes.reviewItem}>
+                <Typography>
+                  <strong>{review.name}</strong>
+                </Typography>
+                <Typography>{review.createdAt.substring(0, 10)}</Typography>
+              </Grid>
+              <Grid item>
+                <Rating value={review.rating} readOnly></Rating>
+                <Typography>{review.comment}</Typography>
+              </Grid>
+            </Grid>
+          </ListItem>
+        ))}
+        <ListItem>
+          {userInfo ? (
+            <form onSubmit={submitHandler} className={classes.reviewForm}>
+              <List>
+                <ListItem>
+                  <Typography variant="h2">Deixe sua avaliação</Typography>
+                </ListItem>
+                <ListItem>
+                  <TextField
+                    multiline
+                    variant="outlined"
+                    fullWidth
+                    name="review"
+                    label="Escreva um comentário"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                  />
+                </ListItem>
+                <ListItem>
+                  <Rating
+                    name="simple-controlled"
+                    value={rating}
+                    onChange={(e) => setRating(e.target.value)}
+                  />
+                </ListItem>
+                <ListItem>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                  >
+                    Enviar
+                  </Button>
+
+                  {loading && <CircularProgress></CircularProgress>}
+                </ListItem>
+              </List>
+            </form>
+          ) : (
+            <Typography variant="h2">
+              Por favor{' '}
+              <Link href={`/login?redirect=/produtos/${product.slug}`}>
+                logue
+              </Link>{' '}
+              para fazer uma avaliação
+            </Typography>
+          )}
+        </ListItem>
+      </List>
     </Layout>
   );
 }
@@ -124,7 +245,7 @@ export async function getServerSideProps(context) {
   const { params } = context;
   const { slug } = params;
   await db.connect();
-  const product = await Product.findOne({ slug }).lean();
+  const product = await Product.findOne({ slug }, '-reviews').lean();
   await db.disconnect();
   return {
     props: {

@@ -17,6 +17,7 @@ import axios from 'axios';
 import { useRouter } from 'next/dist/client/router';
 import { useContext } from 'react';
 import { Store } from '../utils/Store';
+import Rating from '@material-ui/lab/Rating';
 
 export default function Home(props) {
   const router = useRouter();
@@ -57,26 +58,27 @@ export default function Home(props) {
                       >
                         {product.name}
                       </Typography>
-                      <CardActions
-                        disableSpacing="true"
-                        className={classes.cardActions}
-                      >
-                        <Typography className={classes.productPrice}>
-                          R${product.price}
-                        </Typography>
-
-                        <Button
-                          className={classes.ctaProductList}
-                          size="small"
-                          color="secondary"
-                          variation="button"
-                          onClick={() => addToCartHandler(product)}
-                        >
-                          {' '}
-                          Adicionar ao carrinho
-                        </Button>
-                      </CardActions>
+                      <Rating value={product.rating} readOnly></Rating>
                     </CardContent>
+                    <CardActions
+                      disableSpacing="true"
+                      className={classes.cardActions}
+                    >
+                      <Typography className={classes.productPrice}>
+                        R${product.price}
+                      </Typography>
+
+                      <Button
+                        className={classes.ctaProductList}
+                        size="small"
+                        color="secondary"
+                        variation="button"
+                        onClick={() => addToCartHandler(product)}
+                      >
+                        {' '}
+                        Adicionar ao carrinho
+                      </Button>
+                    </CardActions>
                   </CardActionArea>
                 </NextLink>
               </Card>
@@ -90,7 +92,7 @@ export default function Home(props) {
 
 export async function getServerSideProps() {
   await db.connect();
-  const products = await Product.find({}).lean();
+  const products = await Product.find({}, '-reviews').lean();
   await db.disconnect();
   return {
     props: {

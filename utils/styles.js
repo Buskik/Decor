@@ -12,6 +12,15 @@ const useStyles = makeStyles({
     float: 'left',
     marginTop: '8px',
   },
+  reviewForm: {
+    maxWidth: 800,
+    width: '100%',
+  },
+  reviewItem: {
+    marginRight: '1rem',
+    borderRight: '1px #808080 solid',
+    paddingRight: '1rem',
+  },
   cart: {
     marginRight: 0,
   },
