@@ -44,7 +44,7 @@ function CartScreen() {
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
   };
   const checkoutHandler = () => {
-    router.push('/shipping');
+    router.push('/pedido');
   };
 
   const classes = useStyles();

@@ -1,6 +1,5 @@
 import {
   Button,
-  ButtonBase,
   Card,
   CardActionArea,
   CardActions,
@@ -32,7 +31,7 @@ export default function Home(props) {
       return;
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-    router.push('/cart');
+    router.push('/carrinho');
   };
   const classes = useStyles();
   return (
@@ -44,7 +43,7 @@ export default function Home(props) {
             <Grid item md={3} key={product.name}>
               <Card>
                 <NextLink href={`/produtos/${product.slug}`} passHref>
-                  <CardActionArea classNmae={classes.cardActionArea}>
+                  <CardActionArea className={classes.cardActionArea}>
                     <CardMedia
                       component="img"
                       image={product.image}

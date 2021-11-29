@@ -27,6 +27,14 @@ export default function Layout({ description, title, children }) {
   const { state, dispatch } = useContext(Store);
   const { darkMode, cart, userInfo } = state;
   const theme = createTheme({
+    overrides: {
+      MuiStepper: {
+        root: {
+          marginTop: 10,
+          borderRadius: 10,
+        },
+      },
+    },
     typography: {
       fontFamily: "'Nunito Sans', sansSerif,",
     },
@@ -50,8 +58,11 @@ export default function Layout({ description, title, children }) {
   const loginClickHandler = (e) => {
     setAnchorEl(e.currentTarget);
   };
-  const loginMenuCloseHandler = () => {
+  const loginMenuCloseHandler = (e, redirect) => {
     setAnchorEl(null);
+    if (redirect) {
+      router.push(redirect);
+    }
   };
   const logoutClickHandler = () => {
     setAnchorEl(null);
@@ -88,7 +99,7 @@ export default function Layout({ description, title, children }) {
                 onChange={darkModeChangehandler}
               ></Switch>
 
-              <Link href="/cart" className={classes.cart}>
+              <Link href="/carrinho" className={classes.cart}>
                 {cart.cartItems.length > 0 ? (
                   <Badge
                     className={classes.cartBadge}
@@ -118,11 +129,26 @@ export default function Layout({ description, title, children }) {
                     open={Boolean(anchorEl)}
                     onclose={loginMenuCloseHandler}
                   >
-                    <MenuItem onClick={loginMenuCloseHandler}>Perfil</MenuItem>
-                    <MenuItem onClick={loginMenuCloseHandler}>
+                    <MenuItem
+                      onClick={(e) => loginMenuCloseHandler(e, '/minha-conta')}
+                    >
                       Minha conta
                     </MenuItem>
-                    <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
+                    <MenuItem
+                      onClick={(e) => loginMenuCloseHandler(e, '/meus-pedidos')}
+                    >
+                      Meus pedidos
+                    </MenuItem>
+                    {userInfo.isAdmin && (
+                      <MenuItem
+                        onClick={(e) =>
+                          loginMenuCloseHandler(e, '/admin/dashboard')
+                        }
+                      >
+                        Dashboard
+                      </MenuItem>
+                    )}
+                    <MenuItem onClick={logoutClickHandler}>Sair</MenuItem>
                   </Menu>
                 </>
               ) : (

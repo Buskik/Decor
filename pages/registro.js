@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import NextLink from 'next/link';
+import { getError } from '../utils/error';
 import React, { useContext, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
@@ -42,7 +42,7 @@ export default function Register() {
       return;
     }
     try {
-      const { data } = await axios.post('/api/users/register', {
+      const { data } = await axios.post('/api/users/registro', {
         name,
         email,
         password,
@@ -51,10 +51,7 @@ export default function Register() {
       Cookies.set('userInfo, data');
       router.push(redirect || '/');
     } catch (err) {
-      enqueueSnackbar(
-        err.response.data ? err.response.data.message : err.message,
-        { variant: 'error' }
-      );
+      enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
 
@@ -90,7 +87,7 @@ export default function Register() {
                     errors.name
                       ? errors.name.type === 'minLength'
                         ? 'O nome precisa ter mais de um caractere'
-                        : 'O nome é obrigatório'
+                        : 'Insira seu nome'
                       : ''
                   }
                   {...field}
@@ -119,7 +116,7 @@ export default function Register() {
                     errors.email
                       ? errors.email.type === 'pattern'
                         ? 'O email não é válido'
-                        : 'O email é obrigatório'
+                        : 'Insira seu email'
                       : ''
                   }
                   {...field}
@@ -141,14 +138,14 @@ export default function Register() {
                   variant="outlined"
                   fullWidth
                   id="password"
-                  label="Password"
+                  label="Senha"
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.password)}
                   helperText={
                     errors.password
                       ? errors.password.type === 'minLength'
                         ? 'A senha precisa ter no mínimo 8 caracteres'
-                        : 'A senha é obrigatória'
+                        : 'Insira sua senha'
                       : ''
                   }
                   {...field}
@@ -170,14 +167,14 @@ export default function Register() {
                   variant="outlined"
                   fullWidth
                   id="confirmPassword"
-                  label="Confirm Password"
+                  label="Confirmar senha"
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.confirmPassword)}
                   helperText={
                     errors.confirmPassword
                       ? errors.confirmPassword.type === 'minLength'
                         ? 'Confirmar senha precisa ter no mínimo 8 caracteres'
-                        : 'Confirmar senha é obrigatório'
+                        : 'Insira a confirmação de senha'
                       : ''
                   }
                   {...field}

@@ -7,11 +7,12 @@ import {
   Link,
 } from '@material-ui/core';
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
 import { useRouter } from 'next/dist/client/router';
+import { getError } from '../utils/error';
 import Cookies from 'js-cookie';
 import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
@@ -24,7 +25,7 @@ export default function Login() {
   } = useForm();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const router = useRouter();
-  const { redirect } = router.query; //login?redirect=/shipping
+  const { redirect } = router.query;
   const { state, dispatch } = useContext(Store);
   const { userInfo } = state;
   useEffect(() => {
@@ -44,10 +45,7 @@ export default function Login() {
       Cookies.set('userInfo', data);
       router.push(redirect || '/');
     } catch (err) {
-      enqueueSnackbar(
-        err.response.data ? err.response.data.message : err.message,
-        { variant: 'error' }
-      );
+      enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
 
@@ -83,7 +81,7 @@ export default function Login() {
                     errors.email
                       ? errors.email.type === 'pattern'
                         ? 'O email não é válido'
-                        : 'O email é obrigatório'
+                        : 'Insira seu email'
                       : ''
                   }
                   {...field}
@@ -105,14 +103,14 @@ export default function Login() {
                   variant="outlined"
                   fullWidth
                   id="password"
-                  label="Password"
+                  label="Senha"
                   inputProps={{ type: 'password' }}
                   error={Boolean(errors.password)}
                   helperText={
                     errors.password
                       ? errors.password.type === 'minLength'
                         ? 'A senha precisa ter no mínimo 8 caracteres'
-                        : 'A senha é obrigatória'
+                        : 'Insira sua senha'
                       : ''
                   }
                   {...field}

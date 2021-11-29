@@ -8,7 +8,6 @@ const useStyles = makeStyles({
     },
   },
   switch: {
-    marginRight: -11,
     margin: 0,
     float: 'left',
     marginTop: '8px',
@@ -19,6 +18,11 @@ const useStyles = makeStyles({
   cartBadge: {
     marginLeft: '8px',
     marginRight: '-15px',
+  },
+  form: {
+    width: '100%',
+    maxWidth: 800,
+    margin: '0 auto',
   },
   login: {
     padding: 0,
@@ -39,6 +43,7 @@ const useStyles = makeStyles({
   section: {
     marginTop: 10,
   },
+
   productTitle: {
     fontWeight: 'bold',
     fontSize: '2rem',
@@ -60,6 +65,57 @@ const useStyles = makeStyles({
   },
 
   ctaProduct: {
+    fontFamily: "'Nunito Sans', sansSerif",
+    fontWeight: 'bold',
+    backgroundColor: '#fff000',
+    color: '#000',
+    '&:hover': {
+      backgroundColor: '#000',
+      color: '#fff000',
+    },
+  },
+  ctaShipping: {
+    fontFamily: "'Nunito Sans', sansSerif",
+    fontWeight: 'bold',
+    backgroundColor: '#fff000',
+    color: '#000',
+    '&:hover': {
+      backgroundColor: '#000',
+      color: '#fff000',
+    },
+  },
+  ctaPayment: {
+    fontFamily: "'Nunito Sans', sansSerif",
+    fontWeight: 'bold',
+    backgroundColor: '#fff000',
+    color: '#000',
+    '&:hover': {
+      backgroundColor: '#000',
+      color: '#fff000',
+    },
+  },
+  ctaPaymentBack: {
+    fontFamily: "'Nunito Sans', sansSerif",
+    fontWeight: 'bold',
+    backgroundColor: '#424242',
+
+    color: '#fff000',
+    '&:hover': {
+      backgroundColor: '#000',
+    },
+  },
+
+  ctaOrderBack: {
+    fontFamily: "'Nunito Sans', sansSerif",
+    fontWeight: 'bold',
+    backgroundColor: '#424242',
+
+    color: '#fff000',
+    '&:hover': {
+      backgroundColor: '#000',
+    },
+  },
+  ctaOrder: {
     fontFamily: "'Nunito Sans', sansSerif",
     fontWeight: 'bold',
     backgroundColor: '#fff000',
@@ -109,6 +165,21 @@ const useStyles = makeStyles({
     fontWeight: 'bold',
     fontSize: '30px',
   },
+  paymentTitle: {
+    marginTop: '15px',
+    fontWeight: 'bold',
+    fontSize: '30px',
+  },
+  placeOrderTitle: {
+    marginTop: '15px',
+    fontWeight: 'bold',
+    fontSize: '30px',
+  },
+  shippingTitle: {
+    marginTop: '15px',
+    fontWeight: 'bold',
+    fontSize: '30px',
+  },
   cartEmpty: {
     marginTop: '10px',
     '& a': {
@@ -124,6 +195,12 @@ const useStyles = makeStyles({
     fontWeight: 'bold',
     fontSize: '30px',
     marginTop: 20,
+  },
+  error: {
+    color: '#f04040',
+  },
+  fullWidth: {
+    width: '100%',
   },
 });
 export default useStyles;

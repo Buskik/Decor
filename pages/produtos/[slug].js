@@ -36,7 +36,7 @@ export default function ProductScreen(props) {
       return;
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-    router.push('/cart');
+    router.push('/carrinho');
   };
   return (
     <Layout title={product.name} description={product.description}>
