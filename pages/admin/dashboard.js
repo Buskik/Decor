@@ -96,7 +96,7 @@ function AdminDashboard() {
               </NextLink>
               <NextLink href="/admin/usuarios" passHref>
                 <ListItem button component="a">
-                  <ListItemText primary="Usuário  s"></ListItemText>
+                  <ListItemText primary="Usuários"></ListItemText>
                 </ListItem>
               </NextLink>
             </List>
