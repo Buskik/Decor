@@ -1,5 +1,4 @@
 import { Step, StepLabel, Stepper } from '@material-ui/core';
-
 import React from 'react';
 
 export default function CheckoutWizard({ activeStep = 0 }) {
