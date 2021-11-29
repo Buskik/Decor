@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-import Cookies from 'js-cookie';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
@@ -96,18 +94,16 @@ function AdminProducts() {
     try {
       dispatch({ type: 'CREATE_REQUEST' });
       const { data } = await axios.post(
-        `/api/admin/products`,
+        `/api/admin/products/products`,
         {},
         {
           headers: { authorization: `Bearer ${userInfo.token}` },
         }
       );
-      console.log(data);
       dispatch({ type: 'CREATE_SUCCESS' });
       enqueueSnackbar('Product created successfully', { variant: 'success' });
       router.push(`/admin/produtos/${data.product._id}`);
     } catch (err) {
-      console.log(err.response);
       dispatch({ type: 'CREATE_FAIL' });
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
@@ -217,7 +213,7 @@ function AdminProducts() {
                                 </Button>
                               </NextLink>{' '}
                               <Button
-                                onClick={deleteHandler}
+                                onClick={() => deleteHandler(product._id)}
                                 size="small"
                                 variant="contained"
                               >
