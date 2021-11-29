@@ -12,6 +12,7 @@ import {
   ListItem,
   Typography,
 } from '@material-ui/core';
+import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
 import Layout from '../../components/Layout';
 import useStyles from '../../utils/styles';
@@ -19,7 +20,6 @@ import Product from '../../models/Product';
 import db from '../../utils/db';
 import { Store } from '../../utils/Store';
 import { getError } from '../../utils/error';
-import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/dist/client/router';
 

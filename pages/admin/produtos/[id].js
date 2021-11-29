@@ -110,7 +110,7 @@ function ProductEdit({ params }) {
       });
       dispatch({ type: 'UPLOAD_SUCCESS' });
       setValue('image', data.secure_url);
-      enqueueSnackbar('File uploaded successfully', { variant: 'success' });
+      enqueueSnackbar('Arquivo enviado com sucesso', { variant: 'success' });
     } catch (err) {
       dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
       enqueueSnackbar(getError(err), { variant: 'error' });

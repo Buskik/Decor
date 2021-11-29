@@ -101,7 +101,7 @@ function AdminProducts() {
         }
       );
       dispatch({ type: 'CREATE_SUCCESS' });
-      enqueueSnackbar('Product created successfully', { variant: 'success' });
+      enqueueSnackbar('Produuto criado com sucesso', { variant: 'success' });
       router.push(`/admin/produtos/${data.product._id}`);
     } catch (err) {
       dispatch({ type: 'CREATE_FAIL' });
@@ -118,7 +118,7 @@ function AdminProducts() {
         headers: { authorization: `Bearer ${userInfo.token}` },
       });
       dispatch({ type: 'DELETE_SUCCESS' });
-      enqueueSnackbar('Product deleted successfully', { variant: 'success' });
+      enqueueSnackbar('Produto deletado com sucesso', { variant: 'success' });
     } catch (err) {
       dispatch({ type: 'DELETE_FAIL' });
       enqueueSnackbar(getError(err), { variant: 'error' });
