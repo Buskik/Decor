@@ -25,8 +25,8 @@ import { useRouter } from 'next/dist/client/router';
 
 export default function ProductScreen(props) {
   const router = useRouter();
-  const { userInfo } = state;
   const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
   const { product } = props;
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
