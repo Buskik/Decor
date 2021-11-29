@@ -179,7 +179,9 @@ function AdminDashboard() {
                 )}
               </ListItem>
               <ListItem>
-                <Typography component="h1">Gráfico de vendas</Typography>
+                <Typography component="h1" className={classes.shippingTitle2}>
+                  Gráfico de vendas
+                </Typography>
               </ListItem>
               <ListItem>
                 <Bar
@@ -187,8 +189,10 @@ function AdminDashboard() {
                     labels: summary.salesData.map((x) => x._id),
                     datasets: [
                       {
-                        label: 'Vendas',
-                        backgroundColor: 'rgba(162, 222, 208, 1)',
+                        label: 'Lucro',
+                        color: 'white',
+                        backgroundColor: '#fff000',
+                        maxBarThickness: 75,
                         data: summary.salesData.map((x) => x.totalSales),
                       },
                     ],

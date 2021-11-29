@@ -216,7 +216,9 @@ function Order({ params }) {
             <Card className={classes.section}>
               <List>
                 <ListItem>
-                  <Typography component="h2">Endereço de entrega</Typography>
+                  <Typography component="h2" className={classes.shippingTitle2}>
+                    Endereço de entrega
+                  </Typography>
                 </ListItem>
                 <ListItem>
                   {shippingAddress.fullName} <br></br> {shippingAddress.address}{' '}
@@ -232,7 +234,9 @@ function Order({ params }) {
             <Card className={classes.section}>
               <List>
                 <ListItem>
-                  <Typography component="h2">Forma de pagamento</Typography>
+                  <Typography component="h2" className={classes.shippingTitle2}>
+                    Forma de pagamento
+                  </Typography>
                 </ListItem>
                 <ListItem>{paymentMethod}</ListItem>
                 <ListItem>
@@ -246,7 +250,9 @@ function Order({ params }) {
             <Card className={classes.section}>
               <List>
                 <ListItem>
-                  <Typography component="h2">Itens do pedido</Typography>
+                  <Typography component="h2" className={classes.shippingTitle2}>
+                    Itens do pedido
+                  </Typography>
                 </ListItem>
                 <ListItem>
                   <TableContainer>
@@ -307,7 +313,9 @@ function Order({ params }) {
             <Card className={classes.section}>
               <List>
                 <ListItem>
-                  <Typography>Resumo do pedido</Typography>
+                  <Typography className={classes.shippingTitle2}>
+                    Resumo do pedido
+                  </Typography>
                 </ListItem>
                 <ListItem>
                   <Grid container>
@@ -362,12 +370,13 @@ function Order({ params }) {
                   <ListItem>
                     {loadingDeliver && <CircularProgress />}
                     <Button
+                      className={classes.ctaProduct}
                       fullWidth
                       variant="contained"
                       color="primary"
                       onClick={deliverOrderHandler}
                     >
-                      Deliver Order
+                      Entregar pedido
                     </Button>
                   </ListItem>
                 )}

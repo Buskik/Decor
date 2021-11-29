@@ -89,7 +89,9 @@ function OrderHistory() {
           <Card className={classes.section}>
             <List>
               <ListItem>
-                <Typography component="h1">Meus pedidos</Typography>
+                <Typography className={classes.shippingTitle2} component="h1">
+                  Meus pedidos
+                </Typography>
               </ListItem>
               <ListItem>
                 {loading ? (
@@ -126,7 +128,7 @@ function OrderHistory() {
                                 : 'Não entregue'}
                             </TableCell>
                             <TableCell>
-                              <NextLink href={`/order/${order._id}`} passHref>
+                              <NextLink href={`/pedido/${order._id}`} passHref>
                                 <Button variant="contained">Detalhes</Button>
                               </NextLink>
                             </TableCell>

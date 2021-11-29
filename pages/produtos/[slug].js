@@ -121,7 +121,7 @@ export default function ProductScreen(props) {
             <ListItem>
               <Rating value={product.rating} readOnly></Rating>
               <Link href="#reviews">
-                <Typography>({product.numReviews} reviews)</Typography>
+                <Typography>({product.numReviews} avaliações)</Typography>
               </Link>
             </ListItem>
             <ListItem>
@@ -167,11 +167,15 @@ export default function ProductScreen(props) {
       </Grid>
       <List>
         <ListItem>
-          <Typography name="reviews" id="reviews" variant="h2">
-            Customer Reviews
+          <Typography
+            className={classes.productTitle}
+            name="reviews"
+            id="reviews"
+          >
+            Avaliações
           </Typography>
         </ListItem>
-        {reviews.length === 0 && <ListItem>No review</ListItem>}
+        {reviews.length === 0 && <ListItem>Sem avaliações</ListItem>}
         {reviews.map((review) => (
           <ListItem key={review._id}>
             <Grid container>
@@ -193,7 +197,9 @@ export default function ProductScreen(props) {
             <form onSubmit={submitHandler} className={classes.reviewForm}>
               <List>
                 <ListItem>
-                  <Typography variant="h2">Deixe sua avaliação</Typography>
+                  <Typography className={classes.productTitle}>
+                    Deixe sua avaliação
+                  </Typography>
                 </ListItem>
                 <ListItem>
                   <TextField
@@ -215,6 +221,7 @@ export default function ProductScreen(props) {
                 </ListItem>
                 <ListItem>
                   <Button
+                    className={classes.ctaProduct}
                     type="submit"
                     fullWidth
                     variant="contained"

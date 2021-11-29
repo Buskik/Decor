@@ -133,8 +133,8 @@ function AdminUsers() {
           <Card className={classes.section}>
             <List>
               <ListItem>
-                <Typography component="h1" variant="h1">
-                  Users
+                <Typography component="h1" className={classes.shippingTitle2}>
+                  Usuários
                 </Typography>
                 {loadingDelete && <CircularProgress />}
               </ListItem>
@@ -162,17 +162,24 @@ function AdminUsers() {
                             <TableCell>{user._id.substring(20, 24)}</TableCell>
                             <TableCell>{user.name}</TableCell>
                             <TableCell>{user.email}</TableCell>
-                            <TableCell>{user.isAdmin ? 'YES' : 'NO'}</TableCell>
+                            <TableCell>
+                              {user.isAdmin ? 'Sim' : 'Não'}
+                            </TableCell>
                             <TableCell>
                               <NextLink
                                 href={`/admin/usuarios/${user._id}`}
                                 passHref
                               >
-                                <Button size="small" variant="contained">
+                                <Button
+                                  className={classes.ctaEdit}
+                                  size="small"
+                                  variant="contained"
+                                >
                                   Editar
                                 </Button>
                               </NextLink>{' '}
                               <Button
+                                className={classes.ctaDeleteUser}
                                 onClick={() => deleteHandler(user._id)}
                                 size="small"
                                 variant="contained"

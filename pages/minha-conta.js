@@ -88,7 +88,9 @@ function Profile() {
           <Card className={classes.section}>
             <List>
               <ListItem>
-                <Typography component="h1">Minha conta</Typography>
+                <Typography component="h1" className={classes.shippingTitle2}>
+                  Minha conta
+                </Typography>
               </ListItem>
               <ListItem>
                 <form

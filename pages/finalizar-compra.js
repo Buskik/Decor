@@ -77,7 +77,7 @@ function PlaceOrder() {
       dispatch({ type: 'CART_CLEAR' });
       Cookies.remove('cartItems');
       setLoading(false);
-      router.push(`/order/${data._id}`);
+      router.push(`/pedido/${data._id}`);
     } catch (err) {
       setLoading(false);
       enqueueSnackbar(getError(err), { variant: 'error' });
@@ -96,7 +96,9 @@ function PlaceOrder() {
           <Card className={classes.section}>
             <List>
               <ListItem>
-                <Typography component="h2">Endereço de entrega</Typography>
+                <Typography component="h2" className={classes.shippingTitle}>
+                  Endereço de entrega
+                </Typography>
               </ListItem>
               <ListItem>
                 {shippingAddress.fullName} <br></br> {shippingAddress.address} -{' '}
@@ -108,7 +110,9 @@ function PlaceOrder() {
           <Card className={classes.section}>
             <List>
               <ListItem>
-                <Typography component="h2">Forma de pagamento</Typography>
+                <Typography component="h2" className={classes.shippingTitle2}>
+                  Forma de pagamento
+                </Typography>
               </ListItem>
               <ListItem>{paymentMethod}</ListItem>
             </List>
@@ -116,7 +120,9 @@ function PlaceOrder() {
           <Card className={classes.section}>
             <List>
               <ListItem>
-                <Typography component="h2">Itens do pedido</Typography>
+                <Typography component="h2" className={classes.shippingTitle2}>
+                  Itens do pedido
+                </Typography>
               </ListItem>
               <ListItem>
                 <TableContainer>
@@ -171,7 +177,9 @@ function PlaceOrder() {
           <Card className={classes.section}>
             <List>
               <ListItem>
-                <Typography>Resumo do pedido</Typography>
+                <Typography className={classes.shippingTitle2}>
+                  Resumo do pedido
+                </Typography>
               </ListItem>
               <ListItem>
                 <Grid container>

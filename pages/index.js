@@ -58,17 +58,23 @@ export default function Home(props) {
                       >
                         {product.name}
                       </Typography>
-                      <Rating value={product.rating} readOnly></Rating>
+                      <Typography
+                        align="right"
+                        className={classes.productPrice}
+                      >
+                        {'R$'}
+                        {product.price}
+                      </Typography>
+                      <Rating
+                        value={product.rating}
+                        size="large"
+                        readOnly
+                      ></Rating>
                     </CardContent>
                     <CardActions
                       disableSpacing="true"
                       className={classes.cardActions}
                     >
-                      <Typography className={classes.productPrice}>
-                        {'R$'}
-                        {product.price}
-                      </Typography>
-
                       <Button
                         className={classes.ctaProductList}
                         size="small"

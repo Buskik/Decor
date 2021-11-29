@@ -99,7 +99,9 @@ function AdminOrders() {
           <Card className={classes.section}>
             <List>
               <ListItem>
-                <Typography component="h1">Pedidos</Typography>
+                <Typography component="h1" className={classes.shippingTitle2}>
+                  Pedidos
+                </Typography>
               </ListItem>
 
               <ListItem>
@@ -138,7 +140,12 @@ function AdminOrders() {
                             </TableCell>
                             <TableCell>
                               <NextLink href={`/order/${order._id}`} passHref>
-                                <Button variant="contained">Detalhes</Button>
+                                <Button
+                                  className={classes.ctaDetails}
+                                  variant="contained"
+                                >
+                                  Detalhes
+                                </Button>
                               </NextLink>
                             </TableCell>
                           </TableRow>

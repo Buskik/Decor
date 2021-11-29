@@ -66,13 +66,14 @@ const useStyles = makeStyles({
     fontSize: '30px',
   },
   card: {
+    justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: -25,
     padding: '3px 8px 35px 8px',
   },
   cardArea: {
     marginBottom: -25,
   },
-
   ctaProduct: {
     fontFamily: "'Nunito Sans', sansSerif",
     fontWeight: 'bold',
@@ -81,6 +82,66 @@ const useStyles = makeStyles({
     '&:hover': {
       backgroundColor: '#000',
       color: '#fff000',
+    },
+  },
+  ctaDetails: {
+    fontFamily: "'Nunito Sans', sansSerif",
+    fontWeight: 'bold',
+    backgroundColor: '#fff000',
+    color: '#000',
+    '&:hover': {
+      backgroundColor: '#000',
+      color: '#fff000',
+    },
+  },
+  ctaCreate: {
+    fontFamily: "'Nunito Sans', sansSerif",
+    fontWeight: 'bold',
+    backgroundColor: '#fff000',
+    color: '#000',
+    '&:hover': {
+      backgroundColor: '#000',
+      color: '#fff000',
+    },
+  },
+
+  ctaEdit: {
+    padding: '5px 11px 5px 10px',
+    fontFamily: "'Nunito Sans', sansSerif",
+    fontWeight: 'bold',
+    backgroundColor: '#fff000',
+
+    color: '#000',
+    '& span': {
+      margin: '0px 6px 0px 4px',
+      alignItems: 'center',
+    },
+    '&:hover': {
+      backgroundColor: '#000',
+      color: '#fff000',
+    },
+  },
+  ctaDelete: {
+    marginTop: 10,
+    padding: '5px 10px 5px 10px',
+    fontFamily: "'Nunito Sans', sansSerif",
+    fontWeight: 'bold',
+
+    backgroundColor: '#2d2d28',
+    color: '#fff000',
+    '&:hover': {
+      backgroundColor: '#000',
+    },
+  },
+  ctaDeleteUser: {
+    padding: '6px 10px 5px 10px',
+    fontFamily: "'Nunito Sans', sansSerif",
+    fontWeight: 'bold',
+
+    backgroundColor: '#2d2d28',
+    color: '#fff000',
+    '&:hover': {
+      backgroundColor: '#000',
     },
   },
   ctaShipping: {
@@ -136,6 +197,8 @@ const useStyles = makeStyles({
   },
   cardActions: {
     marginRight: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   ctaProductList: {
     fontSize: '13px',
@@ -155,9 +218,9 @@ const useStyles = makeStyles({
   },
   productPrice: {
     color: '#5aff00',
-    fontSize: '15px',
+    fontSize: '20px',
     fontWeight: '700',
-    marginRight: 10,
+    margin: '10px 10px -32px 0px',
     padding: 0,
   },
   font: {
@@ -186,6 +249,10 @@ const useStyles = makeStyles({
   },
   shippingTitle: {
     marginTop: '15px',
+    fontWeight: 'bold',
+    fontSize: '30px',
+  },
+  shippingTitle2: {
     fontWeight: 'bold',
     fontSize: '30px',
   },

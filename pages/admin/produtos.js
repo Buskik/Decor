@@ -146,7 +146,7 @@ function AdminProducts() {
                 </ListItem>
               </NextLink>
               <NextLink href="/admin/usuarios" passHref>
-                <ListItem selected button component="a">
+                <ListItem button component="a">
                   <ListItemText primary="Usuários"></ListItemText>
                 </ListItem>
               </NextLink>
@@ -156,23 +156,31 @@ function AdminProducts() {
         <Grid item md={9} xs={12}>
           <Card className={classes.section}>
             <List>
-              <Grid container alignItems="center">
-                <Grid item xs={6}>
-                  <Typography component="h1">Produtos</Typography>
-                  {loadingDelete && <CircularProgress />}
-                </Grid>
-                <Grid align="right" item xs={6}>
-                  <Button
-                    onClick={createHandler}
-                    color="primary"
-                    variant="contained"
-                  >
-                    Criar
-                  </Button>
-                  {loadingCreate && <CircularProgress />}
-                </Grid>
-              </Grid>
+              <ListItem>
+                <Grid container alignItems="center">
+                  <Grid item xs={6}>
+                    <Typography
+                      component="h1"
+                      className={classes.shippingTitle2}
+                    >
+                      Produtos
+                    </Typography>
+                    {loadingDelete && <CircularProgress />}
+                  </Grid>
 
+                  <Grid align="right" item xs={6}>
+                    <Button
+                      onClick={createHandler}
+                      color="primary"
+                      variant="contained"
+                      className={classes.ctaCreate}
+                    >
+                      Criar
+                    </Button>
+                    {loadingCreate && <CircularProgress />}
+                  </Grid>
+                </Grid>
+              </ListItem>
               <ListItem>
                 {loading ? (
                   <CircularProgress />
@@ -208,7 +216,12 @@ function AdminProducts() {
                                 href={`/admin/produtos/${product._id}`}
                                 passHref
                               >
-                                <Button size="small" variant="contained">
+                                <Button
+                                  className={classes.ctaEdit}
+                                  align="center"
+                                  size="small"
+                                  variant="contained"
+                                >
                                   Editar
                                 </Button>
                               </NextLink>{' '}
@@ -216,6 +229,7 @@ function AdminProducts() {
                                 onClick={() => deleteHandler(product._id)}
                                 size="small"
                                 variant="contained"
+                                className={classes.ctaDelete}
                               >
                                 Deletar
                               </Button>
