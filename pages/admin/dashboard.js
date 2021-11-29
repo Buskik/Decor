@@ -71,7 +71,8 @@ function AdminDashboard() {
       }
     };
     fetchData();
-  });
+  }, [router, userInfo]);
+
   return (
     <Layout title="Dashboard">
       <Grid container spacing={1}>
@@ -93,9 +94,9 @@ function AdminDashboard() {
                   <ListItemText primary="Produtos"></ListItemText>
                 </ListItem>
               </NextLink>
-              <NextLink href="/admin/users" passHref>
+              <NextLink href="/admin/usuarios" passHref>
                 <ListItem button component="a">
-                  <ListItemText primary="Users"></ListItemText>
+                  <ListItemText primary="Usuário  s"></ListItemText>
                 </ListItem>
               </NextLink>
             </List>
@@ -114,8 +115,9 @@ function AdminDashboard() {
                     <Grid item md={3}>
                       <Card raised>
                         <CardContent>
-                          <Typography variant="h1">
-                            R${summary.ordersPrice}
+                          <Typography>
+                            {'R$'}
+                            {summary.ordersPrice}
                           </Typography>
                           <Typography>Vendas</Typography>
                         </CardContent>
@@ -131,9 +133,7 @@ function AdminDashboard() {
                     <Grid item md={3}>
                       <Card raised>
                         <CardContent>
-                          <Typography variant="h1">
-                            {summary.ordersCount}
-                          </Typography>
+                          <Typography>{summary.ordersCount}</Typography>
                           <Typography>Pedidos</Typography>
                         </CardContent>
                         <CardActions>
@@ -148,9 +148,7 @@ function AdminDashboard() {
                     <Grid item md={3}>
                       <Card raised>
                         <CardContent>
-                          <Typography variant="h1">
-                            {summary.productsCount}
-                          </Typography>
+                          <Typography>{summary.productsCount}</Typography>
                           <Typography>Produtos</Typography>
                         </CardContent>
                         <CardActions>
@@ -165,9 +163,7 @@ function AdminDashboard() {
                     <Grid item md={3}>
                       <Card raised>
                         <CardContent>
-                          <Typography variant="h1">
-                            {summary.usersCount}
-                          </Typography>
+                          <Typography>{summary.usersCount}</Typography>
                           <Typography>Usuários</Typography>
                         </CardContent>
                         <CardActions>
@@ -183,9 +179,7 @@ function AdminDashboard() {
                 )}
               </ListItem>
               <ListItem>
-                <Typography component="h1" variant="h1">
-                  Gráfico de vendas
-                </Typography>
+                <Typography component="h1">Gráfico de vendas</Typography>
               </ListItem>
               <ListItem>
                 <Bar

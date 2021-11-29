@@ -65,7 +65,7 @@ function OrderHistory() {
       }
     };
     fetchOrders();
-  });
+  }, [router, userInfo]);
   return (
     <Layout title="Meus pedidos">
       <Grid container spacing={1}>

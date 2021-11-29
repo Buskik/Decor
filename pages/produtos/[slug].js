@@ -69,7 +69,8 @@ export default function ProductScreen(props) {
   };
   useEffect(() => {
     fetchReviews();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!product) {
     return <div>Produto não encontrado</div>;
@@ -227,7 +228,7 @@ export default function ProductScreen(props) {
               </List>
             </form>
           ) : (
-            <Typography variant="h2">
+            <Typography>
               Por favor{' '}
               <Link href={`/login?redirect=/produtos/${product.slug}`}>
                 logue

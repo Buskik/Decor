@@ -135,8 +135,15 @@ function Order({ params }) {
       };
       loadPaypalScript();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [order, successPay, successDeliver]);
+  }, [
+    order,
+    successPay,
+    successDeliver,
+    userInfo,
+    orderId,
+    router,
+    paypalDispatch,
+  ]);
 
   const { enqueueSnackbar } = useSnackbar();
 

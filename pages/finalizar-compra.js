@@ -50,7 +50,7 @@ function PlaceOrder() {
     if (cartItems.length === 0) {
       router.push('/carrinho');
     }
-  });
+  }, [cartItems.length, paymentMethod, router]);
 
   const { closeSnackbar, enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);

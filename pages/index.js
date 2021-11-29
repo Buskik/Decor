@@ -39,9 +39,9 @@ export default function Home(props) {
     <Layout className={classes.layout}>
       <div>
         <h1>Produtos</h1>
-        <Grid container spacing={4}>
+        <Grid container spacing={3}>
           {products.map((product) => (
-            <Grid item md={3} key={product.name}>
+            <Grid item md={4} key={product.name}>
               <Card>
                 <NextLink href={`/produtos/${product.slug}`} passHref>
                   <CardActionArea className={classes.cardActionArea}>
@@ -65,7 +65,8 @@ export default function Home(props) {
                       className={classes.cardActions}
                     >
                       <Typography className={classes.productPrice}>
-                        R${product.price}
+                        {'R$'}
+                        {product.price}
                       </Typography>
 
                       <Button

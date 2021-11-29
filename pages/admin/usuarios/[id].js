@@ -91,7 +91,7 @@ function UserEdit({ params }) {
       };
       fetchData();
     }
-  });
+  }, [router, setValue, userId, userInfo]);
 
   const submitHandler = async ({ name }) => {
     closeSnackbar();
@@ -107,7 +107,7 @@ function UserEdit({ params }) {
       );
       dispatch({ type: 'UPDATE_SUCCESS' });
       enqueueSnackbar('User updated successfully', { variant: 'success' });
-      router.push('/admin/users');
+      router.push('/admin/usuarios');
     } catch (err) {
       dispatch({ type: 'UPDATE_FAIL', payload: getError(err) });
       enqueueSnackbar(getError(err), { variant: 'error' });

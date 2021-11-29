@@ -65,7 +65,7 @@ function AdminOrders() {
       }
     };
     fetchData();
-  });
+  }, [router, userInfo]);
   return (
     <Layout title="Pedidos">
       <Grid container spacing={1}>
@@ -87,9 +87,9 @@ function AdminOrders() {
                   <ListItemText primary="Produtos"></ListItemText>
                 </ListItem>
               </NextLink>
-              <NextLink href="/admin/users" passHref>
+              <NextLink href="/admin/usuarios" passHref>
                 <ListItem button component="a">
-                  <ListItemText primary="Users"></ListItemText>
+                  <ListItemText primary="Usuários"></ListItemText>
                 </ListItem>
               </NextLink>
             </List>

@@ -95,7 +95,7 @@ function ProductEdit({ params }) {
       };
       fetchData();
     }
-  });
+  }, [productId, router, setValue, userInfo]);
   const uploadHandler = async (e) => {
     const file = e.target.files[0];
     const bodyFormData = new FormData();
@@ -147,7 +147,7 @@ function ProductEdit({ params }) {
 
       dispatch({ type: 'UPDATE_SUCCESS' });
       enqueueSnackbar('Produto atualizado com sucesso', { variant: 'success' });
-      router.push('/admin/products');
+      router.push('/admin/produtos');
     } catch (err) {
       dispatch({ type: 'UPDATE_FAIL', payload: getError(err) });
       enqueueSnackbar(getError(err), { variant: 'error' });
@@ -174,9 +174,9 @@ function ProductEdit({ params }) {
                   <ListItemText primary="Produtos"></ListItemText>
                 </ListItem>
               </NextLink>
-              <NextLink href="/admin/users" passHref>
+              <NextLink href="/admin/usuarios" passHref>
                 <ListItem button component="a">
-                  <ListItemText primary="Users"></ListItemText>
+                  <ListItemText primary="Usuarios"></ListItemText>
                 </ListItem>
               </NextLink>
             </List>
@@ -186,9 +186,7 @@ function ProductEdit({ params }) {
           <Card className={classes.section}>
             <List>
               <ListItem>
-                <Typography component="h1" variant="h1">
-                  Edit Product {productId}
-                </Typography>
+                <Typography component="h1">Edit Product {productId}</Typography>
               </ListItem>
               <ListItem>
                 {loading && <CircularProgress></CircularProgress>}

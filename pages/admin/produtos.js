@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import Cookies from 'js-cookie';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
@@ -59,12 +60,14 @@ function AdminProducts() {
   const classes = useStyles();
   const { userInfo } = state;
 
-  const [{ loading, error, products, successDelete, loadingDelete }, dispatch] =
-    useReducer(reducer, {
-      loading: true,
-      products: [],
-      error: '',
-    });
+  const [
+    { loading, error, products, successDelete, loadingCreate, loadingDelete },
+    dispatch,
+  ] = useReducer(reducer, {
+    loading: true,
+    products: [],
+    error: '',
+  });
 
   useEffect(() => {
     if (!userInfo) {
@@ -86,14 +89,10 @@ function AdminProducts() {
     } else {
       fetchData();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [successDelete]);
+  }, [router, successDelete, userInfo]);
 
   const { enqueueSnackbar } = useSnackbar();
   const createHandler = async () => {
-    if (!window.confirm('Are you sure?')) {
-      return;
-    }
     try {
       dispatch({ type: 'CREATE_REQUEST' });
       const { data } = await axios.post(
@@ -103,17 +102,18 @@ function AdminProducts() {
           headers: { authorization: `Bearer ${userInfo.token}` },
         }
       );
+      console.log(data);
       dispatch({ type: 'CREATE_SUCCESS' });
       enqueueSnackbar('Product created successfully', { variant: 'success' });
-      router.push(`/admin/product/${data.product._id}`);
+      router.push(`/admin/produtos/${data.product._id}`);
     } catch (err) {
+      console.log(err.response);
       dispatch({ type: 'CREATE_FAIL' });
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
-  // eslint-disable-next-line no-unused-vars
   const deleteHandler = async (productId) => {
-    if (!window.confirm('Are you sure?')) {
+    if (!window.confirm('Tem certeza?')) {
       return;
     }
     try {
@@ -147,6 +147,11 @@ function AdminProducts() {
               <NextLink href="/admin/produtos" passHref>
                 <ListItem selected button component="a">
                   <ListItemText primary="Produtos"></ListItemText>
+                </ListItem>
+              </NextLink>
+              <NextLink href="/admin/usuarios" passHref>
+                <ListItem selected button component="a">
+                  <ListItemText primary="Usuários"></ListItemText>
                 </ListItem>
               </NextLink>
             </List>
@@ -211,7 +216,11 @@ function AdminProducts() {
                                   Editar
                                 </Button>
                               </NextLink>{' '}
-                              <Button size="small" variant="contained">
+                              <Button
+                                onClick={deleteHandler}
+                                size="small"
+                                variant="contained"
+                              >
                                 Deletar
                               </Button>
                             </TableCell>

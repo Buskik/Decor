@@ -80,8 +80,7 @@ function AdminUsers() {
     } else {
       fetchData();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [successDelete]);
+  }, [router, successDelete, userInfo]);
 
   const { enqueueSnackbar } = useSnackbar();
 

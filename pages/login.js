@@ -32,7 +32,7 @@ export default function Login() {
     if (userInfo) {
       router.push('/');
     }
-  });
+  }, [router, userInfo]);
   const classes = useStyles();
   const submitHandler = async ({ email, password }) => {
     closeSnackbar();
@@ -42,7 +42,9 @@ export default function Login() {
         password,
       });
       dispatch({ type: 'USER_LOGIN', payload: data });
-      Cookies.set('userInfo', data);
+      console.log(data);
+      // toda vez que usa json stringify tem que usar json.parse pra pegar de volta
+      Cookies.set('userInfo', JSON.stringify(data));
       router.push(redirect || '/');
     } catch (err) {
       enqueueSnackbar(getError(err), { variant: 'error' });
