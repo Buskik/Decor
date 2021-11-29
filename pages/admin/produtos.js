@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
@@ -85,6 +86,7 @@ function AdminProducts() {
     } else {
       fetchData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [successDelete]);
 
   const { enqueueSnackbar } = useSnackbar();
@@ -109,6 +111,7 @@ function AdminProducts() {
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
+  // eslint-disable-next-line no-unused-vars
   const deleteHandler = async (productId) => {
     if (!window.confirm('Are you sure?')) {
       return;
@@ -163,7 +166,7 @@ function AdminProducts() {
                     color="primary"
                     variant="contained"
                   >
-                    Create
+                    Criar
                   </Button>
                   {loadingCreate && <CircularProgress />}
                 </Grid>

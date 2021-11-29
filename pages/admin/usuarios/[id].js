@@ -91,7 +91,7 @@ function UserEdit({ params }) {
       };
       fetchData();
     }
-  }, []);
+  });
 
   const submitHandler = async ({ name }) => {
     closeSnackbar();

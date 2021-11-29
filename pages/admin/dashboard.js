@@ -24,7 +24,6 @@ import {
   CardContent,
   CardActions,
 } from '@material-ui/core';
-import Chart from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
 import { getError } from '../../utils/error';
 import { Store } from '../../utils/Store';
