@@ -41,7 +41,7 @@ export default function ProductScreen(props) {
     setLoading(true);
     try {
       await axios.post(
-        `/api/products/${product._id}/reviews`,
+        `../api/products/${product._id}/reviews`,
         {
           rating,
           comment,
