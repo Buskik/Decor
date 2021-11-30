@@ -129,7 +129,12 @@ function OrderHistory() {
                             </TableCell>
                             <TableCell>
                               <NextLink href={`/pedido/${order._id}`} passHref>
-                                <Button variant="contained">Detalhes</Button>
+                                <Button
+                                  className={classes.ctaProduct}
+                                  variant="contained"
+                                >
+                                  Detalhes
+                                </Button>
                               </NextLink>
                             </TableCell>
                           </TableRow>

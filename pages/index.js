@@ -1,14 +1,4 @@
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from '@material-ui/core';
-import NextLink from 'next/link';
+import { Grid } from '@material-ui/core';
 import Layout from '../components/Layout';
 import Product from '../models/Product';
 import db from '../utils/db';
@@ -17,7 +7,7 @@ import axios from 'axios';
 import { useRouter } from 'next/dist/client/router';
 import { useContext } from 'react';
 import { Store } from '../utils/Store';
-import Rating from '@material-ui/lab/Rating';
+import ProductItem from '../components/ProductItem';
 
 export default function Home(props) {
   const router = useRouter();
@@ -42,53 +32,10 @@ export default function Home(props) {
         <Grid container spacing={3}>
           {products.map((product) => (
             <Grid item md={4} key={product.name}>
-              <Card>
-                <NextLink href={`/produtos/${product.slug}`} passHref>
-                  <CardActionArea className={classes.cardActionArea}>
-                    <CardMedia
-                      component="img"
-                      image={product.image}
-                      title={product.name}
-                    ></CardMedia>
-                    <CardContent className={classes.card}>
-                      <Typography
-                        className={classes.productTitle2}
-                        component="h1"
-                        align="center"
-                      >
-                        {product.name}
-                      </Typography>
-                      <Typography
-                        align="right"
-                        className={classes.productPrice}
-                      >
-                        {'R$'}
-                        {product.price}
-                      </Typography>
-                      <Rating
-                        value={product.rating}
-                        size="large"
-                        readOnly
-                      ></Rating>
-                    </CardContent>
-                    <CardActions
-                      disableSpacing="true"
-                      className={classes.cardActions}
-                    >
-                      <Button
-                        className={classes.ctaProductList}
-                        size="small"
-                        color="secondary"
-                        variation="button"
-                        onClick={() => addToCartHandler(product)}
-                      >
-                        {' '}
-                        Adicionar ao carrinho
-                      </Button>
-                    </CardActions>
-                  </CardActionArea>
-                </NextLink>
-              </Card>
+              <ProductItem
+                product={product}
+                addToCartHandler={addToCartHandler}
+              />
             </Grid>
           ))}
         </Grid>
