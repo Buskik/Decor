@@ -216,7 +216,7 @@ export default function Layout({ description, title, children }) {
                 onChange={darkModeChangehandler}
               ></Switch>
 
-              <Link component="span" href="/carrinho" className={classes.cart}>
+              <Link href="/carrinho" className={classes.cart}>
                 {cart.cartItems.length > 0 ? (
                   <Badge
                     className={classes.cartBadge}
@@ -269,7 +269,7 @@ export default function Layout({ description, title, children }) {
                   </Menu>
                 </>
               ) : (
-                <Link component="span" href="/login">
+                <Link href="/login">
                   <Image src="/login.svg" width={24} height={50} alt="" />
                 </Link>
               )}
