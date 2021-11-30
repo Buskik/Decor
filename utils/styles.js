@@ -283,7 +283,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   menuButton: { padding: 0 },
-  // search
+
   searchSection: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
