@@ -24,6 +24,12 @@ const useStyles = makeStyles((theme) => ({
   cart: {
     marginRight: 0,
   },
+  elencoImage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+  },
+  elencoText: {},
   cartBadge: {
     marginLeft: '8px',
     marginRight: '-15px',
@@ -46,8 +52,18 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '80vh',
   },
   footer: {
-    marginTop: 10,
+    marginTop: 50,
+    padding: '15px 50px 70px 50px',
     textAlign: 'center',
+    backgroundColor: '#424242',
+  },
+  footerGrid: {
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  footerLink: {
+    marginRight: 20,
   },
   section: {
     marginTop: 10,
@@ -57,10 +73,21 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     fontSize: '2rem',
   },
+  weAreTitle: {
+    fontWeight: 'bold',
+    fontSize: '2.5rem',
+    margin: '60px 0px 30px 0px',
+  },
+  weAreTitle2: {
+    fontWeight: 'bold',
+    fontSize: '3rem',
+    margin: '60px 0px 30px 0px',
+  },
   productTitle2: {
     fontWeight: 'bold',
     fontSize: '30px',
   },
+
   cartTitle2: {
     fontWeight: 'bold',
     fontSize: '30px',

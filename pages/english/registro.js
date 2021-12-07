@@ -7,17 +7,17 @@ import {
   Link,
 } from '@material-ui/core';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+import { getError } from '../utils/error';
 import React, { useContext, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
 import useStyles from '../utils/styles';
-import { useRouter } from 'next/dist/client/router';
-import { getError } from '../utils/error';
 import Cookies from 'js-cookie';
 import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 
-export default function Login() {
+export default function Register() {
   const {
     handleSubmit,
     control,
@@ -33,17 +33,22 @@ export default function Login() {
       router.push('/');
     }
   }, [router, userInfo]);
+
   const classes = useStyles();
-  const submitHandler = async ({ email, password }) => {
+  const submitHandler = async ({ name, email, password, confirmPassword }) => {
     closeSnackbar();
+    if (password !== confirmPassword) {
+      enqueueSnackbar('Senhas não são iguais ', { variant: 'error' });
+      return;
+    }
     try {
-      const { data } = await axios.post('/api/users/login', {
+      const { data } = await axios.post('/api/users/registro', {
+        name,
         email,
         password,
       });
       dispatch({ type: 'USER_LOGIN', payload: data });
-
-      Cookies.set('userInfo', JSON.stringify(data));
+      Cookies.set('userInfo, data');
       router.push(redirect || '/');
     } catch (err) {
       enqueueSnackbar(getError(err), { variant: 'error' });
@@ -51,16 +56,45 @@ export default function Login() {
   };
 
   return (
-    <Layout title="Login">
+    <Layout title="Registro">
       <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
         <Typography
           align="center"
           component="h1"
-          className={classes.loginTitle}
+          className={classes.registerTitle}
         >
-          Olá, seja bem-vindo!
+          Registro
         </Typography>
         <List>
+          <ListItem>
+            <Controller
+              name="name"
+              control={control}
+              defaultValue=""
+              rules={{
+                required: true,
+                minLength: 2,
+              }}
+              render={({ field }) => (
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  id="name"
+                  label="Nome"
+                  inputProps={{ type: 'name' }}
+                  error={Boolean(errors.name)}
+                  helperText={
+                    errors.name
+                      ? errors.name.type === 'minLength'
+                        ? 'O nome precisa ter mais de um caractere'
+                        : 'Insira seu nome'
+                      : ''
+                  }
+                  {...field}
+                ></TextField>
+              )}
+            ></Controller>
+          </ListItem>
           <ListItem>
             <Controller
               name="email"
@@ -120,6 +154,35 @@ export default function Login() {
             ></Controller>
           </ListItem>
           <ListItem>
+            <Controller
+              name="confirmPassword"
+              control={control}
+              defaultValue=""
+              rules={{
+                required: true,
+                minLength: 8,
+              }}
+              render={({ field }) => (
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  id="confirmPassword"
+                  label="Confirmar senha"
+                  inputProps={{ type: 'password' }}
+                  error={Boolean(errors.confirmPassword)}
+                  helperText={
+                    errors.confirmPassword
+                      ? errors.confirmPassword.type === 'minLength'
+                        ? 'Confirmar senha precisa ter no mínimo 8 caracteres'
+                        : 'Insira a confirmação de senha'
+                      : ''
+                  }
+                  {...field}
+                ></TextField>
+              )}
+            ></Controller>
+          </ListItem>
+          <ListItem>
             <Button
               className={classes.ctaProduct}
               variant="contained"
@@ -127,14 +190,12 @@ export default function Login() {
               fullWidth
               color="primary"
             >
-              Entrar
+              Registrar
             </Button>
           </ListItem>
           <ListItem>
-            Não tem uma conta?&nbsp;
-            <Link href={`/registro?redirect=${redirect || '/'}`}>
-              Registre-se
-            </Link>
+            Já tem uma conta?&nbsp;
+            <Link href={`/login?redirect=${redirect || '/'}`}>Logue aqui</Link>
           </ListItem>
         </List>
       </form>

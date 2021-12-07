@@ -4,63 +4,79 @@ import {
   Typography,
   TextField,
   Button,
-  Link,
 } from '@material-ui/core';
-import axios from 'axios';
-import React, { useContext, useEffect } from 'react';
 import Layout from '../components/Layout';
-import { Store } from '../utils/Store';
-import useStyles from '../utils/styles';
-import { useRouter } from 'next/dist/client/router';
 import { getError } from '../utils/error';
-import Cookies from 'js-cookie';
-import { Controller, useForm } from 'react-hook-form';
+import useStyles from '../utils/styles';
 import { useSnackbar } from 'notistack';
+import { Controller, useForm } from 'react-hook-form';
 
-export default function Login() {
+export default function Contact() {
   const {
-    handleSubmit,
     control,
     formState: { errors },
   } = useForm();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-  const router = useRouter();
-  const { redirect } = router.query;
-  const { state, dispatch } = useContext(Store);
-  const { userInfo } = state;
-  useEffect(() => {
-    if (userInfo) {
-      router.push('/');
-    }
-  }, [router, userInfo]);
-  const classes = useStyles();
-  const submitHandler = async ({ email, password }) => {
+  async function submitHandler(e) {
+    e.preventDefault();
     closeSnackbar();
     try {
-      const { data } = await axios.post('/api/users/login', {
-        email,
-        password,
+      const formData = {};
+      Array.from(e.currentTarget.elements).forEach((field) => {
+        if (!field.name) return;
+        formData[field.name] = field.value;
       });
-      dispatch({ type: 'USER_LOGIN', payload: data });
-
-      Cookies.set('userInfo', JSON.stringify(data));
-      router.push(redirect || '/');
+      fetch('/api/mail', {
+        method: 'post',
+        body: JSON.stringify(formData),
+      });
+      console.log(formData);
     } catch (err) {
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
-  };
+  }
+
+  const classes = useStyles();
 
   return (
-    <Layout title="Login">
-      <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
+    <Layout title="Contato">
+      <form onSubmit={submitHandler} className={classes.form}>
         <Typography
+          className={classes.loginTitle}
           align="center"
           component="h1"
-          className={classes.loginTitle}
         >
-          Olá, seja bem-vindo!
+          Contato
         </Typography>
         <List>
+          <ListItem>
+            <Controller
+              name="fullName"
+              control={control}
+              defaultVale=""
+              rules={{
+                required: true,
+                minLength: 2,
+              }}
+              render={({ field }) => (
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  id="fullName"
+                  label="Nome completo"
+                  error={Boolean(errors.fullName)}
+                  helperText={
+                    errors.fullName
+                      ? errors.fullName.type === 'minLength'
+                        ? 'O nome completo precisa ter no mínimo duas caracteres'
+                        : 'Insira o seu nome completo'
+                      : ''
+                  }
+                  {...field}
+                ></TextField>
+              )}
+            ></Controller>
+          </ListItem>
           <ListItem>
             <Controller
               name="email"
@@ -92,9 +108,9 @@ export default function Login() {
           </ListItem>
           <ListItem>
             <Controller
-              name="password"
+              name="message"
               control={control}
-              defaultValue=""
+              defaultVale=""
               rules={{
                 required: true,
                 minLength: 8,
@@ -103,15 +119,16 @@ export default function Login() {
                 <TextField
                   variant="outlined"
                   fullWidth
-                  id="password"
-                  label="Senha"
-                  inputProps={{ type: 'password' }}
-                  error={Boolean(errors.password)}
+                  multiline
+                  rows={6}
+                  id="message"
+                  label="Mensagem"
+                  error={Boolean(errors.message)}
                   helperText={
-                    errors.password
-                      ? errors.password.type === 'minLength'
-                        ? 'A senha precisa ter no mínimo 8 caracteres'
-                        : 'Insira sua senha'
+                    errors.message
+                      ? errors.message.type === 'minLength'
+                        ? 'A mensagem precisa ter no mínimo oito caracteres'
+                        : 'Insira a mensagem'
                       : ''
                   }
                   {...field}
@@ -127,14 +144,8 @@ export default function Login() {
               fullWidth
               color="primary"
             >
-              Entrar
+              Enviar
             </Button>
-          </ListItem>
-          <ListItem>
-            Não tem uma conta?&nbsp;
-            <Link href={`/registro?redirect=${redirect || '/'}`}>
-              Registre-se
-            </Link>
           </ListItem>
         </List>
       </form>

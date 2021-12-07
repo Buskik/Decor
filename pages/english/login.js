@@ -42,7 +42,8 @@ export default function Login() {
         password,
       });
       dispatch({ type: 'USER_LOGIN', payload: data });
-
+      console.log(data);
+      // toda vez que usa json stringify tem que usar json.parse pra pegar de volta
       Cookies.set('userInfo', JSON.stringify(data));
       router.push(redirect || '/');
     } catch (err) {

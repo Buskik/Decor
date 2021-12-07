@@ -37,6 +37,7 @@ import Cookies from 'js-cookie';
 import { getError } from '../utils/error';
 import { useState } from 'react';
 import { useRouter } from 'next/dist/client/router';
+import { Grid } from '@mui/material';
 
 export default function Layout({ description, title, children }) {
   const router = useRouter();
@@ -73,6 +74,7 @@ export default function Layout({ description, title, children }) {
     setSidebarVisible(false);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const [categories, setCategories] = useState([]);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -164,7 +166,7 @@ export default function Layout({ description, title, children }) {
                     alignItems="center"
                     justifyContent="space-between"
                   >
-                    <Typography>Procurar por categoria</Typography>
+                    <Typography>NAVEGAR</Typography>
                     <IconButton
                       aria-label="close"
                       onClick={sidebarCloseHandler}
@@ -174,21 +176,21 @@ export default function Layout({ description, title, children }) {
                   </Box>
                 </ListItem>
                 <Divider light />
-                {categories.map((category) => (
-                  <NextLink
-                    key={category}
-                    href={`/search?category=${category}`}
-                    passHref
-                  >
-                    <ListItem
-                      button
-                      component="a"
-                      onClick={sidebarCloseHandler}
-                    >
-                      <ListItemText primary={category}></ListItemText>
-                    </ListItem>
-                  </NextLink>
-                ))}
+                <NextLink href={`/search`} passHref>
+                  <ListItem button component="a" onClick={sidebarCloseHandler}>
+                    <ListItemText>Produtos</ListItemText>
+                  </ListItem>
+                </NextLink>
+                <NextLink href={`/quem-somos`} passHref>
+                  <ListItem button component="a" onClick={sidebarCloseHandler}>
+                    <ListItemText>Quem somos</ListItemText>
+                  </ListItem>
+                </NextLink>
+                <NextLink href={`/contato`} passHref>
+                  <ListItem button component="a" onClick={sidebarCloseHandler}>
+                    <ListItemText>Contato</ListItemText>
+                  </ListItem>
+                </NextLink>
               </List>
             </Drawer>
             <div className={classes.searchSection}>
@@ -278,7 +280,16 @@ export default function Layout({ description, title, children }) {
         </AppBar>
         <Container className={classes.main}>{children}</Container>
         <footer className={classes.footer}>
-          <Typography>Todos direitos reservados. Decor.</Typography>
+          <Typography>Todos direitos reservados, Decor. ©2021</Typography>
+
+          <Grid className={classes.footerGrid} container spacing={3}>
+            <Grid item md={4}>
+              <Link className={classes.footerLink} href="/quem-somos">
+                Quem somos
+              </Link>
+              <Link href="/contato">Contato</Link>
+            </Grid>
+          </Grid>
         </footer>
       </ThemeProvider>
     </div>
