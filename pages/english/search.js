@@ -15,7 +15,7 @@ import Layout from '../../components/LayoutEnglish';
 import db from '../../utils/db';
 import Product from '../../models/Product';
 import useStyles from '../../utils/styles';
-import ProductItem from '../../components/ProductItemEnglish';
+import ProductItem from '../../components/EnglishProductItem';
 import { Store } from '../../utils/Store';
 import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';

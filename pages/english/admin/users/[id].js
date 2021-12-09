@@ -16,10 +16,10 @@ import {
   Checkbox,
   FormControlLabel,
 } from '@material-ui/core';
-import { getError } from '../../../utils/error';
-import { Store } from '../../../utils/Store';
-import Layout from '../../../components/Layout';
-import useStyles from '../../../utils/styles';
+import { getError } from '../../../../utils/error';
+import { Store } from '../../../../utils/Store';
+import Layout from '../../../../components/LayoutEnglish';
+import useStyles from '../../../../utils/styles';
 import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 
@@ -74,7 +74,7 @@ function UserEdit({ params }) {
 
   useEffect(() => {
     if (!userInfo) {
-      return router.push('/login');
+      return router.push('/english/login');
     } else {
       const fetchData = async () => {
         try {
@@ -114,29 +114,29 @@ function UserEdit({ params }) {
     }
   };
   return (
-    <Layout title={`Editar usuário ${userId}`}>
+    <Layout title={`Edit User ${userId}`}>
       <Grid container spacing={1}>
         <Grid item md={3} xs={12}>
           <Card className={classes.section}>
             <List>
-              <NextLink href="/admin/dashboard" passHref>
-                <ListItem button component="a">
+              <NextLink href="/english/admin/dashboard" passHref>
+                <ListItem selected button component="a">
                   <ListItemText primary="Dashboard"></ListItemText>
                 </ListItem>
               </NextLink>
-              <NextLink href="/admin/pedidos" passHref>
+              <NextLink href="/english/admin/orders" passHref>
                 <ListItem button component="a">
-                  <ListItemText primary="Pedidos"></ListItemText>
+                  <ListItemText primary="Orders"></ListItemText>
                 </ListItem>
               </NextLink>
-              <NextLink href="/admin/produtos" passHref>
+              <NextLink href="/english/admin/products" passHref>
                 <ListItem button component="a">
-                  <ListItemText primary="Produtos"></ListItemText>
+                  <ListItemText primary="Products"></ListItemText>
                 </ListItem>
               </NextLink>
-              <NextLink href="/admin/usuarios" passHref>
-                <ListItem selected button component="a">
-                  <ListItemText primary="Usuários"></ListItemText>
+              <NextLink href="/english/admin/users" passHref>
+                <ListItem button component="a">
+                  <ListItemText primary="Users"></ListItemText>
                 </ListItem>
               </NextLink>
             </List>
@@ -147,7 +147,7 @@ function UserEdit({ params }) {
             <List>
               <ListItem>
                 <Typography component="h1" variant="h1">
-                  Editar usuário {userId}
+                  Edit User {userId}
                 </Typography>
               </ListItem>
               <ListItem>
@@ -175,7 +175,7 @@ function UserEdit({ params }) {
                             variant="outlined"
                             fullWidth
                             id="name"
-                            label="Nome"
+                            label="Name"
                             error={Boolean(errors.name)}
                             helperText={errors.name ? 'Insira o nome' : ''}
                             {...field}
@@ -185,7 +185,7 @@ function UserEdit({ params }) {
                     </ListItem>
                     <ListItem>
                       <FormControlLabel
-                        label="É admin"
+                        label="Is Admin"
                         control={
                           <Checkbox
                             onClick={(e) => setIsAdmin(e.target.checked)}
@@ -202,7 +202,7 @@ function UserEdit({ params }) {
                         fullWidth
                         color="primary"
                       >
-                        Atualizar
+                        Update
                       </Button>
                       {loadingUpdate && <CircularProgress />}
                     </ListItem>

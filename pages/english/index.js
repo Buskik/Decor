@@ -10,7 +10,7 @@ import axios from 'axios';
 import { useRouter } from 'next/dist/client/router';
 import { useContext } from 'react';
 import { Store } from '../../utils/Store';
-import ProductItem from '../../components/ProductItemEnglish';
+import ProductItem from '../../components/EnglishProductItem';
 
 export default function Home(props) {
   const Carousel = dynamic(() => import('react-material-ui-carousel'), {

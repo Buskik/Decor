@@ -16,10 +16,10 @@ import {
   FormControlLabel,
   Checkbox,
 } from '@material-ui/core';
-import { getError } from '../../../utils/error';
-import { Store } from '../../../utils/Store';
-import Layout from '../../../components/Layout';
-import useStyles from '../../../utils/styles';
+import { getError } from '../../../../utils/error';
+import { Store } from '../../../../utils/Store';
+import Layout from '../../../../components/LayoutEnglish';
+import useStyles from '../../../../utils/styles';
 import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 
@@ -74,7 +74,7 @@ function ProductEdit({ params }) {
 
   useEffect(() => {
     if (!userInfo) {
-      return router.push('/login');
+      return router.push('/english/login');
     } else {
       const fetchData = async () => {
         try {
@@ -114,7 +114,7 @@ function ProductEdit({ params }) {
       });
       dispatch({ type: 'UPLOAD_SUCCESS' });
       setValue(imageField, data.secure_url);
-      enqueueSnackbar('Arquivo enviado com sucesso', { variant: 'success' });
+      enqueueSnackbar('File sent successfully', { variant: 'success' });
     } catch (err) {
       dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
       enqueueSnackbar(getError(err), { variant: 'error' });
@@ -153,8 +153,8 @@ function ProductEdit({ params }) {
       );
 
       dispatch({ type: 'UPDATE_SUCCESS' });
-      enqueueSnackbar('Produto atualizado com sucesso', { variant: 'success' });
-      router.push('/admin/produtos');
+      enqueueSnackbar('Product updated successfully', { variant: 'success' });
+      router.push('/english/admin/produtos');
     } catch (err) {
       dispatch({ type: 'UPDATE_FAIL', payload: getError(err) });
       enqueueSnackbar(getError(err), { variant: 'error' });
@@ -164,29 +164,29 @@ function ProductEdit({ params }) {
   const [isFeatured, setIsFeatured] = useState(false);
 
   return (
-    <Layout title={`Editar produto ${productId}`}>
+    <Layout title={`Edit Product ${productId}`}>
       <Grid container spacing={1}>
         <Grid item md={3} xs={12}>
           <Card className={classes.section}>
             <List>
-              <NextLink href="/admin/dashboard" passHref>
-                <ListItem button component="a">
+              <NextLink href="/english/admin/dashboard" passHref>
+                <ListItem selected button component="a">
                   <ListItemText primary="Dashboard"></ListItemText>
                 </ListItem>
               </NextLink>
-              <NextLink href="/admin/pedidos" passHref>
+              <NextLink href="/english/admin/orders" passHref>
                 <ListItem button component="a">
-                  <ListItemText primary="Pedidos"></ListItemText>
+                  <ListItemText primary="Orders"></ListItemText>
                 </ListItem>
               </NextLink>
-              <NextLink href="/admin/produtos" passHref>
-                <ListItem selected button component="a">
-                  <ListItemText primary="Produtos"></ListItemText>
+              <NextLink href="/english/admin/products" passHref>
+                <ListItem button component="a">
+                  <ListItemText primary="Products"></ListItemText>
                 </ListItem>
               </NextLink>
-              <NextLink href="/admin/usuarios" passHref>
+              <NextLink href="/english/admin/users" passHref>
                 <ListItem button component="a">
-                  <ListItemText primary="Usuarios"></ListItemText>
+                  <ListItemText primary="Users"></ListItemText>
                 </ListItem>
               </NextLink>
             </List>
@@ -223,7 +223,7 @@ function ProductEdit({ params }) {
                             variant="outlined"
                             fullWidth
                             id="name"
-                            label="Nome"
+                            label="Name"
                             error={Boolean(errors.name)}
                             helperText={errors.name ? 'Insira o nome' : ''}
                             {...field}
@@ -246,7 +246,7 @@ function ProductEdit({ params }) {
                             id="slug"
                             label="Slug"
                             error={Boolean(errors.slug)}
-                            helperText={errors.slug ? 'Insira o slug' : ''}
+                            helperText={errors.slug ? 'Enter the slug ' : ''}
                             {...field}
                           ></TextField>
                         )}
@@ -265,9 +265,9 @@ function ProductEdit({ params }) {
                             variant="outlined"
                             fullWidth
                             id="price"
-                            label="Preço"
+                            label="Price"
                             error={Boolean(errors.price)}
-                            helperText={errors.price ? 'Insira o preço' : ''}
+                            helperText={errors.price ? 'Enter the price' : ''}
                             {...field}
                           ></TextField>
                         )}
@@ -286,9 +286,9 @@ function ProductEdit({ params }) {
                             variant="outlined"
                             fullWidth
                             id="image"
-                            label="Imagem"
+                            label="Image"
                             error={Boolean(errors.image)}
-                            helperText={errors.image ? 'Insira a imagem' : ''}
+                            helperText={errors.image ? 'Enter the image' : ''}
                             {...field}
                           ></TextField>
                         )}
@@ -300,14 +300,14 @@ function ProductEdit({ params }) {
                         variant="contained"
                         component="label"
                       >
-                        Enviar arquivo
+                        Send file
                         <input type="file" onChange={uploadHandler} hidden />
                       </Button>
                       {loadingUpload && <CircularProgress />}
                     </ListItem>
                     <ListItem>
                       <FormControlLabel
-                        label="É destaque?"
+                        label="Featured"
                         control={
                           <Checkbox
                             onClick={(e) => setIsFeatured(e.target.checked)}
@@ -330,7 +330,7 @@ function ProductEdit({ params }) {
                             variant="outlined"
                             fullWidth
                             id="featuredImage"
-                            label="Imagem do destaque"
+                            label="Featured Image"
                             error={Boolean(errors.image)}
                             helperText={
                               errors.image ? 'Featured Image is required' : ''
@@ -346,7 +346,7 @@ function ProductEdit({ params }) {
                         variant="contained"
                         component="label"
                       >
-                        Enviar arquivo
+                        Send file
                         <input
                           type="file"
                           onChange={(e) => uploadHandler(e, 'featuredImage')}
@@ -368,10 +368,10 @@ function ProductEdit({ params }) {
                             variant="outlined"
                             fullWidth
                             id="category"
-                            label="Categoria"
+                            label="Category"
                             error={Boolean(errors.category)}
                             helperText={
-                              errors.category ? 'Insira a categoria' : ''
+                              errors.category ? 'Enter the category' : ''
                             }
                             {...field}
                           ></TextField>
@@ -391,9 +391,9 @@ function ProductEdit({ params }) {
                             variant="outlined"
                             fullWidth
                             id="brand"
-                            label="Marca"
+                            label="Brand"
                             error={Boolean(errors.brand)}
-                            helperText={errors.brand ? 'Insira a marca' : ''}
+                            helperText={errors.brand ? 'Enter the brand' : ''}
                             {...field}
                           ></TextField>
                         )}
