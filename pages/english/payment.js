@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import React, { useContext, useEffect, useState } from 'react';
 import { Store } from '../../utils/Store';
-import Layout from '../../components/LayoutEnglish';
+import Layout from '../../components/EnglishLayout';
 import CheckoutWizard from '../../components/CheckoutWizard';
 import useStyles from '../../utils/styles';
 

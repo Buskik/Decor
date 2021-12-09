@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import axios from 'axios';
 import React, { useContext, useEffect } from 'react';
-import Layout from '../../components/LayoutEnglish';
+import Layout from '../../components/EnglishLayout';
 import { Store } from '../../utils/Store';
 import useStyles from '../../utils/styles';
 import { useRouter } from 'next/dist/client/router';

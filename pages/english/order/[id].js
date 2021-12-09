@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import dynamic from 'next/dynamic';
-import Layout from '../../../components/LayoutEnglish';
+import Layout from '../../../components/EnglishLayout';
 import { Store } from '../../../utils/Store';
 import NextLink from 'next/link';
 import { Button } from '@mui/material';

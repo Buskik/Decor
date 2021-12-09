@@ -2,7 +2,7 @@
 import NextLink from 'next/link';
 import { Grid, Link, Typography } from '@material-ui/core';
 import dynamic from 'next/dynamic';
-import Layout from '../../components/LayoutEnglish';
+import Layout from '../../components/EnglishLayout';
 import Product from '../../models/Product';
 import db from '../../utils/db';
 import useStyles from '../../utils/styles';

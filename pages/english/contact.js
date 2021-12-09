@@ -5,7 +5,7 @@ import {
   TextField,
   Button,
 } from '@material-ui/core';
-import Layout from '../../components/LayoutEnglish';
+import Layout from '../../components/EnglishLayout';
 import { getError } from '../../utils/error';
 import useStyles from '../../utils/styles';
 import { useSnackbar } from 'notistack';

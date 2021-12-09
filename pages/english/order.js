@@ -9,7 +9,7 @@ import {
   Button,
 } from '@material-ui/core';
 
-import Layout from '../../components/LayoutEnglish';
+import Layout from '../../components/EnglishLayout';
 import useStyles from '../../utils/styles';
 import Cookies from 'js-cookie';
 import { Controller, useForm } from 'react-hook-form';

@@ -21,7 +21,7 @@ import {
 } from '@material-ui/core';
 import { getError } from '../../../utils/error';
 import { Store } from '../../../utils/Store';
-import Layout from '../../../components/LayoutEnglish';
+import Layout from '../../../components/EnglishLayout';
 import useStyles from '../../../utils/styles';
 import { useSnackbar } from 'notistack';
 
@@ -69,7 +69,7 @@ function AdminProducts() {
 
   useEffect(() => {
     if (!userInfo) {
-      router.push('/login');
+      router.push('/english/login');
     }
     const fetchData = async () => {
       try {

@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@mui/material';
-import Layout from '../../components/LayoutEnglish';
+import Layout from '../../components/EnglishLayout';
 import useStyles from '../../utils/styles';
 import Image from 'next/image';
 

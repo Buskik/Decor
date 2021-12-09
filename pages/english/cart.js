@@ -15,7 +15,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import React, { useContext } from 'react';
-import Layout from '../../components/LayoutEnglish';
+import Layout from '../../components/EnglishLayout';
 import { Store } from '../../utils/Store';
 import useStyles from '../../utils/styles';
 import Link from 'next/link';

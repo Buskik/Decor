@@ -1,7 +1,7 @@
 import nc from 'next-connect';
-import { isAdmin, isAuth } from '../../../../utils/auth';
-import Product from '../../../../models/Product';
-import db from '../../../../utils/db';
+import { isAdmin, isAuth } from '../../../../../utils/auth';
+import Product from '../../../../../models/Product';
+import db from '../../../../../utils/db';
 
 const handler = nc();
 handler.use(isAuth, isAdmin);
@@ -20,10 +20,10 @@ handler.post(async (req, res) => {
     slug: 'novo-item',
     image: '/images/item1.jpg',
     price: 0,
-    category: 'Exemplo de categoria',
-    brand: 'Exemplo de marca',
+    category: 'Catergory Example',
+    brand: 'Brand Example',
     countInStock: 0,
-    description: 'Exemplo de descrição',
+    description: 'Description Example',
     rating: 0,
     numReviews: 0,
   });

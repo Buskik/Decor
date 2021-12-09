@@ -10,7 +10,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { getError } from '../../utils/error';
 import React, { useContext, useEffect } from 'react';
-import Layout from '../../components/LayoutEnglish';
+import Layout from '../../components/EnglishLayout';
 import { Store } from '../../utils/Store';
 import useStyles from '../../utils/styles';
 import Cookies from 'js-cookie';

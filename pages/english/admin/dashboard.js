@@ -27,7 +27,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { getError } from '../../../utils/error';
 import { Store } from '../../../utils/Store';
-import Layout from '../../../components/LayoutEnglish';
+import Layout from '../../../components/EnglishLayout';
 import useStyles from '../../../utils/styles';
 
 function reducer(state, action) {

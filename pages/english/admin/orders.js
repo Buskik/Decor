@@ -21,7 +21,7 @@ import {
 } from '@material-ui/core';
 import { getError } from '../../../utils/error';
 import { Store } from '../../../utils/Store';
-import Layout from '../../../components/LayoutEnglish';
+import Layout from '../../../components/EnglishLayout';
 import useStyles from '../../../utils/styles';
 
 function reducer(state, action) {

@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
-import Layout from '../../../components/LayoutEnglish';
+import Layout from '../../../components/EnglishLayout';
 import useStyles from '../../../utils/styles';
 import Product from '../../../models/Product';
 import db from '../../../utils/db';
