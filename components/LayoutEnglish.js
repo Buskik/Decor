@@ -93,7 +93,7 @@ export default function Layout({ description, title, children }) {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    router.push(`/search?query=${query}`);
+    router.push(`/english/search?query=${query}`);
   };
 
   useEffect(() => {
@@ -122,7 +122,7 @@ export default function Layout({ description, title, children }) {
     dispatch({ type: 'USER_LOGOUT' });
     Cookies.remove('userInfo');
     Cookies.remove('cartItems');
-    router.push('/');
+    router.push('english/');
   };
   return (
     <div>
@@ -144,7 +144,7 @@ export default function Layout({ description, title, children }) {
               >
                 <MenuIcon className={classes.navbarButton} />
               </IconButton>
-              <Link href="/">
+              <Link href="/english">
                 <Image
                   className={classes.brand}
                   src="/logo.svg"
@@ -166,7 +166,7 @@ export default function Layout({ description, title, children }) {
                     alignItems="center"
                     justifyContent="space-between"
                   >
-                    <Typography>NAVEGAR</Typography>
+                    <Typography>NAVIGATE</Typography>
                     <IconButton
                       aria-label="close"
                       onClick={sidebarCloseHandler}
@@ -176,19 +176,19 @@ export default function Layout({ description, title, children }) {
                   </Box>
                 </ListItem>
                 <Divider light />
-                <NextLink href={`/search`} passHref>
+                <NextLink href={`/english/search`} passHref>
                   <ListItem button component="a" onClick={sidebarCloseHandler}>
-                    <ListItemText>Produtos</ListItemText>
+                    <ListItemText>Products</ListItemText>
                   </ListItem>
                 </NextLink>
-                <NextLink href={`/quem-somos`} passHref>
+                <NextLink href={`../english/what-are-we`} passHref>
                   <ListItem button component="a" onClick={sidebarCloseHandler}>
-                    <ListItemText>Quem somos</ListItemText>
+                    <ListItemText>What are we</ListItemText>
                   </ListItem>
                 </NextLink>
-                <NextLink href={`/contato`} passHref>
+                <NextLink href={`../english/contact`} passHref>
                   <ListItem button component="a" onClick={sidebarCloseHandler}>
-                    <ListItemText>Contato</ListItemText>
+                    <ListItemText>Contact</ListItemText>
                   </ListItem>
                 </NextLink>
               </List>
@@ -198,7 +198,7 @@ export default function Layout({ description, title, children }) {
                 <InputBase
                   name="query"
                   className={classes.searchInput}
-                  placeholder="Buscar produtos"
+                  placeholder="Search items"
                   onChange={queryChangeHandler}
                 />
                 <IconButton
@@ -218,7 +218,7 @@ export default function Layout({ description, title, children }) {
                 onChange={darkModeChangehandler}
               ></Switch>
 
-              <Link href="/carrinho" className={classes.cart}>
+              <Link href="english/cart" className={classes.cart}>
                 {cart.cartItems.length > 0 ? (
                   <Badge
                     className={classes.cartBadge}
@@ -249,34 +249,36 @@ export default function Layout({ description, title, children }) {
                     onclose={loginMenuCloseHandler}
                   >
                     <MenuItem
-                      onClick={(e) => loginMenuCloseHandler(e, '/minha-conta')}
+                      onClick={(e) =>
+                        loginMenuCloseHandler(e, '/english/my-account')
+                      }
                     >
-                      Minha conta
+                      My account
                     </MenuItem>
                     <MenuItem
-                      onClick={(e) => loginMenuCloseHandler(e, '/meus-pedidos')}
+                      onClick={(e) =>
+                        loginMenuCloseHandler(e, '/english/my-orders')
+                      }
                     >
-                      Meus pedidos
+                      My orders
                     </MenuItem>
-                    <MenuItem
-                      onClick={(e) => loginMenuCloseHandler(e, '/english')}
-                    >
-                      Change to english
+                    <MenuItem onClick={(e) => loginMenuCloseHandler(e, '../')}>
+                      Mudar para português
                     </MenuItem>
                     {userInfo.isAdmin && (
                       <MenuItem
                         onClick={(e) =>
-                          loginMenuCloseHandler(e, '/admin/dashboard')
+                          loginMenuCloseHandler(e, '/english/admin/dashboard')
                         }
                       >
                         Dashboard
                       </MenuItem>
                     )}
-                    <MenuItem onClick={logoutClickHandler}>Sair</MenuItem>
+                    <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
                   </Menu>
                 </>
               ) : (
-                <Link href="/login">
+                <Link href="/english/login">
                   <Image src="/login.svg" width={24} height={50} alt="" />
                 </Link>
               )}
@@ -285,14 +287,14 @@ export default function Layout({ description, title, children }) {
         </AppBar>
         <Container className={classes.main}>{children}</Container>
         <footer className={classes.footer}>
-          <Typography>Todos direitos reservados, Decor. ©2021</Typography>
+          <Typography>All rights reserved, Decor. ©2021</Typography>
 
           <Grid className={classes.footerGrid} container spacing={3}>
             <Grid item md={4}>
-              <Link className={classes.footerLink} href="/quem-somos">
-                Quem somos
+              <Link className={classes.footerLink} href="/what-are-we">
+                What are we
               </Link>
-              <Link href="/contato">Contato</Link>
+              <Link href="/contact">Contact</Link>
             </Grid>
           </Grid>
         </footer>

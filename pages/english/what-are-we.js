@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@mui/material';
-import Layout from '../components/Layout';
-import useStyles from '../utils/styles';
+import Layout from '../../components/LayoutEnglish';
+import useStyles from '../../utils/styles';
 import Image from 'next/image';
 
 export default function WeAre() {
@@ -14,12 +14,12 @@ export default function WeAre() {
             align="center"
             className={classes.weAreTitle}
           >
-            Quem somos?
+            What are we?
           </Typography>
           <Typography paragraph align="center">
-            A Decor é uma loja novíssima de decoração querendo trazer mais cor,
-            brilho e luxo para o seu cotidiano. Nosso objetivo é inovar mais o
-            mercado de mobília, trazendo formas criativas de decorar a sua casa.
+            Decor is a brand new decoration store wanting to bring more color,
+            shine and luxury for your daily life. Our goal is to innovate more
+            the furniture market, bringing creative ways to decorate your home.
           </Typography>
         </Grid>
         <Grid className={classes.elencoImage} item xs={6}>
@@ -28,7 +28,7 @@ export default function WeAre() {
             align="center"
             className={classes.weAreTitle2}
           >
-            Elenco
+            Team
           </Typography>
           <Image
             className={classes.elencoImage}
@@ -40,7 +40,8 @@ export default function WeAre() {
           ></Image>
 
           <Typography className={classes.elencoText} paragraph>
-            <br></br>Rodrigo de Andrade Rodrigues, 16 anos. <br></br>Full Stack
+            <br></br>Rodrigo de Andrade Rodrigues, 16 years old. <br></br>
+            Full Stack
           </Typography>
         </Grid>
       </Grid>

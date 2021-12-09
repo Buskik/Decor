@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import dynamic from 'next/dynamic';
-import Layout from '../../components/Layout';
-import { Store } from '../../utils/Store';
+import Layout from '../../../components/LayoutEnglish';
+import { Store } from '../../../utils/Store';
 import NextLink from 'next/link';
 import { Button } from '@mui/material';
 import Image from 'next/image';
@@ -22,10 +22,10 @@ import {
 } from '@material-ui/core';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import useStyles from '../../utils/styles';
-import CheckoutWizard from '../../components/CheckoutWizard';
+import useStyles from '../../../utils/styles';
+import CheckoutWizard from '../../../components/CheckoutWizard';
 import { useSnackbar } from 'notistack';
-import { getError } from '../../utils/error';
+import { getError } from '../../../utils/error';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 
 function reducer(state, action) {
@@ -93,7 +93,7 @@ function Order({ params }) {
 
   useEffect(() => {
     if (!userInfo) {
-      return router.push('/login');
+      return router.push('/english/login');
     }
     const fetchOrder = async () => {
       try {
@@ -203,9 +203,9 @@ function Order({ params }) {
   }
 
   return (
-    <Layout title={`Pedido ${orderId}`}>
+    <Layout title={`Order ${orderId}`}>
       <CheckoutWizard activeStep={3}></CheckoutWizard>
-      <Typography component="h1">Pedido {orderId}</Typography>
+      <Typography component="h1">Order {orderId}</Typography>
       {loading ? (
         <CircularProgress />
       ) : error ? (
@@ -217,7 +217,7 @@ function Order({ params }) {
               <List>
                 <ListItem>
                   <Typography component="h2" className={classes.shippingTitle2}>
-                    Endereço de entrega
+                    Shipping Address
                   </Typography>
                 </ListItem>
                 <ListItem>
@@ -227,7 +227,9 @@ function Order({ params }) {
                 </ListItem>
                 <ListItem>
                   Status: <br></br>
-                  {isDelivered ? `Entregue em ${deliveredAt}` : 'Não entregue'}
+                  {isDelivered
+                    ? `Delivered at ${deliveredAt}`
+                    : 'Not delivered'}
                 </ListItem>
               </List>
             </Card>
@@ -235,15 +237,13 @@ function Order({ params }) {
               <List>
                 <ListItem>
                   <Typography component="h2" className={classes.shippingTitle2}>
-                    Forma de pagamento
+                    Payment Method
                   </Typography>
                 </ListItem>
                 <ListItem>{paymentMethod}</ListItem>
                 <ListItem>
                   Status:<br></br>
-                  {isPaid
-                    ? `Pagamento efetuado em ${paidAt}`
-                    : 'Pagamento não efetuado'}
+                  {isPaid ? `Paid at ${paidAt}` : 'Not paid'}
                 </ListItem>
               </List>
             </Card>
@@ -251,7 +251,7 @@ function Order({ params }) {
               <List>
                 <ListItem>
                   <Typography component="h2" className={classes.shippingTitle2}>
-                    Itens do pedido
+                    Order Items
                   </Typography>
                 </ListItem>
                 <ListItem>
@@ -259,10 +259,10 @@ function Order({ params }) {
                     <Table>
                       <TableHead>
                         <TableRow>
-                          <TableCell>Imagem</TableCell>
-                          <TableCell>Nome</TableCell>
-                          <TableCell align="right">Quantidade</TableCell>
-                          <TableCell align="right">Preço</TableCell>
+                          <TableCell>Image</TableCell>
+                          <TableCell>Name</TableCell>
+                          <TableCell align="right">Quantity</TableCell>
+                          <TableCell align="right">Price</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
@@ -286,7 +286,7 @@ function Order({ params }) {
 
                             <TableCell>
                               <NextLink
-                                href={`/produtos/${item.slug}`}
+                                href={`/english/products/${item.slug}`}
                                 passHref
                               >
                                 <Link>
@@ -298,7 +298,7 @@ function Order({ params }) {
                               <Typography>{item.quantity}</Typography>
                             </TableCell>
                             <TableCell align="right">
-                              <Typography>R${item.price}</Typography>
+                              <Typography>BRL {item.price}</Typography>
                             </TableCell>
                           </TableRow>
                         ))}
@@ -314,26 +314,26 @@ function Order({ params }) {
               <List>
                 <ListItem>
                   <Typography className={classes.shippingTitle2}>
-                    Resumo do pedido
+                    Order Summary
                   </Typography>
                 </ListItem>
                 <ListItem>
                   <Grid container>
                     <Grid item xs={6}>
-                      <Typography>Itens:</Typography>
+                      <Typography>Items:</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                      <Typography align="right">R${itemsPrice}</Typography>
+                      <Typography align="right">BRL {itemsPrice}</Typography>
                     </Grid>
                   </Grid>
                 </ListItem>
                 <ListItem>
                   <Grid container>
                     <Grid item xs={6}>
-                      <Typography>Frete:</Typography>
+                      <Typography>Shipping:</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                      <Typography align="right">R${shippingPrice}</Typography>
+                      <Typography align="right">BRL {shippingPrice}</Typography>
                     </Grid>
                   </Grid>
                 </ListItem>
@@ -346,7 +346,7 @@ function Order({ params }) {
                     </Grid>
                     <Grid item xs={6}>
                       <Typography align="right">
-                        <strong>R${totalPrice}</strong>
+                        <strong>BRL {totalPrice}</strong>
                       </Typography>
                     </Grid>
                   </Grid>
@@ -376,7 +376,7 @@ function Order({ params }) {
                       color="primary"
                       onClick={deliverOrderHandler}
                     >
-                      Entregar pedido
+                      Deliver Order
                     </Button>
                   </ListItem>
                 )}
